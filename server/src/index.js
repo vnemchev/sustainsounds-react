@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+const eventController = require('./controllers/eventController');
+
 async function start() {
     try {
         await mongoose.connect('mongodb://localhost:27017/sustainsounds');
@@ -12,6 +14,12 @@ async function start() {
     }
 
     const app = express();
+
+    app.get('/', (req, res) => {
+        res.send('Hello World!');
+    });
+
+    app.use('/events', eventController);
 
     app.listen(3030, () => console.log('REST Service started on port 3030'));
 }

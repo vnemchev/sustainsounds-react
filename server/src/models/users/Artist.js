@@ -3,16 +3,17 @@ const mongoose = require('mongoose');
 const artistSchema = new mongoose.Schema({
     alias: {
         type: String,
-        required: true,
+        required: [true, 'Alias is required!'],
     },
     email: {
         type: String,
-        required: true,
+        required: [true, 'Email is required!'],
     },
     password: {
         type: String,
-        required: true,
+        required: [true, 'Password is required!'],
     },
+    bio: { type: String },
     genre: { type: String },
     imageUrl: { type: String },
     eventsCreated: [
