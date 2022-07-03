@@ -32,8 +32,20 @@ router.post('/register/artist', async (req, res) => {
 });
 
 // Register as raver
-router.post('/register/raver', (req, res) => {
-    res.send('Events');
+router.post('/register/raver', async (req, res) => {
+    const { email, password, repeatPassword } = req.body;
+    try {
+        if (password != repeatPassword) {
+            throw {
+                message: 'Passwords must match!',
+            };
+        }
+        const result = await authService.registerRaver(email, password);
+        console.log(result);
+    } catch (error) {
+        console.log(error.message);
+    }
+    
 });
 
 // Login

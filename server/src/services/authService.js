@@ -23,6 +23,8 @@ exports.registerArtist = async (email, password, data) => {
         genre: data.genre,
         imageUrl: data.imageUrl,
     });
+
+    return createdArtist;
 };
 
 exports.registerRaver = async (email, password) => {
@@ -38,6 +40,8 @@ exports.registerRaver = async (email, password) => {
         email,
         password: hashedPassword,
     });
+
+    return createdRaver;
 };
 
 exports.login = async (email, password) => {
@@ -55,9 +59,9 @@ exports.login = async (email, password) => {
 };
 
 const checkIfExisting = async email => {
-    const user =
-        (await Artist.findOne({ email: new RegExp(`^${email}$`, 'i') })) ||
-        (await Raver.findOne({ email: new RegExp(`^${email}$`, 'i') }));
+    const settings = { email: new RegExp(`^${email}$`, 'i') };
+
+    const user = (await Artist.findOne(settings)) || (await Raver.findOne(settings));
 
     return user;
 };
