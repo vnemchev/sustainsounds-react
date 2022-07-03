@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "A Restful API providing data for my React app.",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "api",
+    "sustainsounds",
+    "react"
+  ],
+  "author": "Vladimir Nemchev",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.18"
+  }
+}
