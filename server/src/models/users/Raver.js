@@ -9,7 +9,6 @@ const raverSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Password is required!'],
     },
-    imageUrl: { type: String },
     eventsAttended: [
         {
             type: mongoose.Types.ObjectId,

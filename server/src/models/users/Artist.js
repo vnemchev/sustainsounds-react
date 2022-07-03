@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const artistSchema = new mongoose.Schema({
-    alias: {
-        type: String,
-        required: [true, 'Alias is required!'],
-    },
     email: {
         type: String,
         required: [true, 'Email is required!'],
@@ -12,6 +8,10 @@ const artistSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'Password is required!'],
+    },
+    alias: {
+        type: String,
+        required: [true, 'Alias is required!'],
     },
     bio: { type: String },
     genre: { type: String },
