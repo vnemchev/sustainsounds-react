@@ -50,6 +50,13 @@ router.post('/register/raver', async (req, res) => {
 
 // Login
 router.post('/login', (req, res) => {
+    const {email, password} = req.body;
+
+    try {
+        
+    } catch (error) {
+        
+    }
     res.send('Events');
 });
 

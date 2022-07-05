@@ -5,6 +5,7 @@ const Artist = require('../models/users/Artist');
 const Raver = require('../models/users/Raver');
 
 const SALT_ROUNDS = 10;
+const JWT_SECRET = 'hjokslf87^34h#uf893jn_juiq28';
 
 exports.registerArtist = async (email, password, data) => {
     const existing = await checkIfExisting(email);
@@ -56,6 +57,23 @@ exports.login = async (email, password) => {
     if (!match) {
         throw new Error('Incorrect email or password!');
     }
+};
+
+exports.logout = () => {};
+
+const createSession = user => {
+    const payload = {
+        _id: user._id,
+        email: user.email,
+    };
+
+    const token = jwt.sign(payload, JWT_SECRET);
+
+    return {
+        _id: user._id,
+        email: user.email,
+        token,
+    };
 };
 
 const checkIfExisting = async email => {
