@@ -2,49 +2,25 @@ const router = require('express').Router();
 const authService = require('../services/authService');
 
 router.get('/register', (req, res) => {
-    res.render('choice');
+    res.render('register');
 });
 
-router.get('/register/artist', (req, res) => {
-    res.render('registerArtist');
-});
-
-router.get('/register/raver', (req, res) => {
-    res.render('registerRaver');
-});
-
-// Register as artist
-router.post('/register/artist', async (req, res) => {
-    const { email, password, repeatPassword, ...rest } = req.body;
+// Register
+router.post('/register', async (req, res) => {
+    const { email, password, repeatPassword, alias } = req.body;
     try {
         if (password != repeatPassword) {
             throw {
                 message: 'Passwords must match!',
             };
         }
-        const result = await authService.registerArtist(email, password, rest);
+        const result = await authService.register(email, password, alias);
         console.log(result);
     } catch (error) {
         console.log(error.message);
     }
 
     res.send('Events');
-});
-
-// Register as raver
-router.post('/register/raver', async (req, res) => {
-    const { email, password, repeatPassword } = req.body;
-    try {
-        if (password != repeatPassword) {
-            throw {
-                message: 'Passwords must match!',
-            };
-        }
-        const result = await authService.registerRaver(email, password);
-        console.log(result);
-    } catch (error) {
-        console.log(error.message);
-    }
 });
 
 router.get('/login', (req, res) => {

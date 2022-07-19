@@ -1,4 +1,13 @@
+import { useState } from 'react';
+
 export const Register = () => {
+    const [userData, setUserData] = useState({
+        email: '',
+        password: '',
+        repeatPassword: '',
+        alias: '',
+    });
+
     return (
         <form>
             <h1>Register</h1>
@@ -14,8 +23,8 @@ export const Register = () => {
             </div>
 
             <div>
-                <label htmlFor="repeatPass">repeat password: </label>
-                <input type="text" id="repeatPass" name="repeatPass"></input>
+                <label htmlFor="repeatPassword">repeat password: </label>
+                <input type="text" id="repeatPassword" name="repeatPassword"></input>
             </div>
 
             <div>

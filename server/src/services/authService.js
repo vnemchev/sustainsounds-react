@@ -7,7 +7,7 @@ const Raver = require('../models/users/Raver');
 const SALT_ROUNDS = 10;
 const JWT_SECRET = 'hjokslf87^34h#uf893jn_juiq28';
 
-exports.registerArtist = async (email, password, data) => {
+exports.register = async (email, password, alias) => {
     const existing = await checkIfExisting(email);
 
     if (existing) {
@@ -15,34 +15,22 @@ exports.registerArtist = async (email, password, data) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+    let createdUser = '';
 
-    const createdArtist = await Artist.create({
-        email,
-        password: hashedPassword,
-        alias: data.alias,
-        bio: data.bio,
-        genre: data.genre,
-        imageUrl: data.imageUrl,
-    });
-
-    return createSession(createdArtist);
-};
-
-exports.registerRaver = async (email, password) => {
-    const existing = await checkIfExisting(email);
-
-    if (existing) {
-        throw new Error('Email is taken');
+    if (alias) {
+        createdUser = await Artist.create({
+            email,
+            password: hashedPassword,
+            alias,
+        });
+    } else {
+        createdUser = await Raver.create({
+            email,
+            password: hashedPassword,
+        });
     }
 
-    const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
-
-    const createdRaver = await Raver.create({
-        email,
-        password: hashedPassword,
-    });
-
-    return createSession(createdRaver);
+    return createSession(createdUser);
 };
 
 exports.login = async (email, password) => {
@@ -71,11 +59,17 @@ const createSession = user => {
 
     const token = jwt.sign(payload, JWT_SECRET);
 
-    return {
+    const result = {
         _id: user._id,
         email: user.email,
         token,
     };
+
+    if (user.alias) {
+        result['alias'] = user.alias;
+    }
+
+    return result;
 };
 
 const checkIfExisting = async email => {
