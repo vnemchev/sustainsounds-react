@@ -1,4 +1,4 @@
-export const create = async userData => {
+export const register = async userData => {
     const response = await fetch('http://localhost:3030/auth/register', {
         method: 'POST',
         headers: {

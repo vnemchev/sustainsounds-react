@@ -2,10 +2,6 @@ const router = require('express').Router();
 const { Error } = require('mongoose');
 const authService = require('../services/authService');
 
-router.get('/register', (req, res) => {
-    res.render('register');
-});
-
 // Register
 router.post('/register', async (req, res) => {
     const { email, password, repeatPassword, alias } = req.body;
@@ -23,26 +19,17 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.get('/login', (req, res) => {
-    res.render('login');
-});
-
 // Login
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {
         const result = await authService.login(email, password);
-        console.log(result);
-    } catch (error) {
-        console.log(error);
-    }
-    res.send('Events');
-});
 
-// Logout
-router.put('/logout', (req, res) => {
-    res.send('Events');
+        return res.status(200).json(result);
+    } catch (error) {
+        res.status(400).json({ message: Error.message });
+    }
 });
 
 module.exports = router;

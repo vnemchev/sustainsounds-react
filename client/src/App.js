@@ -1,7 +1,13 @@
-import { Register } from './components/Register';
+import { Login } from './components/auth/Login';
+import { Register } from './components/auth/Register';
 
-function App() {
-    return <Register />;
-}
+const App = () => {
+    return (
+        <>
+            <Register />
+            <Login />
+        </>
+    );
+};
 
 export default App;
