@@ -45,17 +45,21 @@ router.post('/register/raver', async (req, res) => {
     } catch (error) {
         console.log(error.message);
     }
-    
+});
+
+router.get('/login', (req, res) => {
+    res.render('login');
 });
 
 // Login
-router.post('/login', (req, res) => {
-    const {email, password} = req.body;
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
 
     try {
-        
+        const result = await authService.login(email, password);
+        console.log(result);
     } catch (error) {
-        
+        console.log(error);
     }
     res.send('Events');
 });

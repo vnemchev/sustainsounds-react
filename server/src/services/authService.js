@@ -25,7 +25,7 @@ exports.registerArtist = async (email, password, data) => {
         imageUrl: data.imageUrl,
     });
 
-    return createdArtist;
+    return createSession(createdArtist);
 };
 
 exports.registerRaver = async (email, password) => {
@@ -42,7 +42,7 @@ exports.registerRaver = async (email, password) => {
         password: hashedPassword,
     });
 
-    return createdRaver;
+    return createSession(createdRaver);
 };
 
 exports.login = async (email, password) => {
@@ -57,6 +57,8 @@ exports.login = async (email, password) => {
     if (!match) {
         throw new Error('Incorrect email or password!');
     }
+
+    return createSession(user);
 };
 
 exports.logout = () => {};
