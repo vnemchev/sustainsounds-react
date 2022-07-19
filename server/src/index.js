@@ -4,6 +4,7 @@ const hbs = require('express-handlebars');
 
 const eventController = require('./controllers/eventController');
 const authController = require('./controllers/authController');
+const cors = require('./middlewares/cors');
 
 async function start() {
     try {
@@ -24,8 +25,10 @@ async function start() {
     app.engine('hbs', hbs.engine({ extname: 'hbs' }));
     app.set('view engine', 'hbs');
     app.set('views', './src/views');
-    
+
     app.use(express.urlencoded({ extended: false }));
+    app.use(express.json());
+    app.use(cors());
 
     app.use('/events', eventController);
     app.use('/auth', authController);
