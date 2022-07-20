@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import * as userService from '../../services/userService';
+import * as userService from '../../../services/userService';
 
 const Register = () => {
     const [registerData, setRegisterData] = useState({
@@ -50,7 +50,7 @@ const Register = () => {
                 <h1>Register</h1>
 
                 <div>
-                    <label htmlFor="email">email: </label>
+                    <label htmlFor="reg-email">email: </label>
                     <input
                         type="email"
                         id="reg-email"
@@ -61,7 +61,7 @@ const Register = () => {
                 </div>
 
                 <div>
-                    <label htmlFor="password">password: </label>
+                    <label htmlFor="reg-password">password: </label>
                     <input
                         type="password"
                         id="reg-password"

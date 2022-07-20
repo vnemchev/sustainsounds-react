@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import * as userService from '../../services/userService';
+import * as userService from '../../../services/userService';
 
 const Login = () => {
     const [loginData, setLoginData] = useState({
@@ -30,7 +30,7 @@ const Login = () => {
                 <h1>Login</h1>
 
                 <div>
-                    <label htmlFor="email">email: </label>
+                    <label htmlFor="login-email">email: </label>
                     <input
                         type="email"
                         id="login-email"
@@ -41,7 +41,7 @@ const Login = () => {
                 </div>
 
                 <div>
-                    <label htmlFor="password">password: </label>
+                    <label htmlFor="login-password">password: </label>
                     <input
                         type="password"
                         id="login-password"

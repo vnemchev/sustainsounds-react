@@ -1,8 +1,10 @@
 import Header from './components/common/header/Header';
 import Footer from './components/common/footer/Footer';
 
-import Login from './components/auth/Login';
-import Register from './components/auth/Register';
+import Create from './components/events/create-event/Create';
+
+import Login from './components/auth/login-register/Login';
+import Register from './components/auth/login-register/Register';
 
 const App = () => {
     return (
@@ -12,6 +14,7 @@ const App = () => {
             <div className="main-container">
                 <Register />
                 <Login />
+                <Create />
             </div>
 
             <Footer />
