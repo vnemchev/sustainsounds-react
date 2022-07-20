@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as userService from '../../services/userService';
 
-export const Register = () => {
+const Register = () => {
     const [registerData, setRegisterData] = useState({
         email: '',
         password: '',
@@ -115,3 +115,5 @@ export const Register = () => {
         </>
     );
 };
+
+export default Register;

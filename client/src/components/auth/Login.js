@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as userService from '../../services/userService';
 
-export const Login = () => {
+const Login = () => {
     const [loginData, setLoginData] = useState({
         email: '',
         password: '',
@@ -60,3 +60,5 @@ export const Login = () => {
         </>
     );
 };
+
+export default Login;
