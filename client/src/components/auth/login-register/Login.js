@@ -12,7 +12,7 @@ const Login = () => {
 
         const { email, password } = loginData;
 
-        // const createdUser = await userService.login(loginData);
+        //const createdUser = await userService.login(loginData);
 
         console.log(email, password);
     };

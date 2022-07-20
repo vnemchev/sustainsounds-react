@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import * as eventService from '../../../services/eventService';
 
 const Create = () => {
     const [event, setEvent] = useState({
@@ -7,13 +8,16 @@ const Create = () => {
         time: '',
         location: '',
         price: '',
+        imageUrl: '',
         description: '',
     });
 
-    const submitHandler = e => {
+    const submitHandler = async e => {
         e.preventDefault();
-        
-        console.log(event);
+
+        const createdEvent = await eventService.create(event);
+
+        console.log(createdEvent);
     };
 
     const changeHandler = e => {

@@ -7,8 +7,8 @@ const Raver = require('../models/users/Raver');
 const SALT_ROUNDS = 10;
 const JWT_SECRET = 'hjokslf87^34h#uf893jn_juiq28';
 
-exports.register = async (email, password, alias) => {
-    const existing = await checkIfExisting(email);
+exports.register = async ({ email, password, alias }) => {
+    const existing = await checkIfExistingUser(email);
 
     if (existing) {
         throw new Error('Email is taken');
@@ -33,8 +33,8 @@ exports.register = async (email, password, alias) => {
     return createSession(createdUser);
 };
 
-exports.login = async (email, password) => {
-    const user = await checkIfExisting(email);
+exports.login = async ({ email, password }) => {
+    const user = await checkIfExistingUser(email);
 
     if (!user) {
         throw new Error('Incorrect email or password!');
@@ -72,7 +72,7 @@ const createSession = user => {
     return result;
 };
 
-const checkIfExisting = async email => {
+const checkIfExistingUser = async email => {
     const settings = { email: new RegExp(`^${email}$`, 'i') };
 
     const user = (await Artist.findOne(settings)) || (await Raver.findOne(settings));

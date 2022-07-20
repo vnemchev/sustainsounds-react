@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const hbs = require('express-handlebars');
 
 const eventController = require('./controllers/eventController');
 const authController = require('./controllers/authController');
@@ -21,10 +20,6 @@ async function start() {
     app.get('/', (req, res) => {
         res.send('Hello World!');
     });
-
-    app.engine('hbs', hbs.engine({ extname: 'hbs' }));
-    app.set('view engine', 'hbs');
-    app.set('views', './src/views');
 
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
