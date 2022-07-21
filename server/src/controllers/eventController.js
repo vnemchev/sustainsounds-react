@@ -1,6 +1,17 @@
 const router = require('express').Router();
 const eventService = require('../services/eventService');
 
+// Get all events
+router.get('/', async (req, res) => {
+    try {
+        const result = await eventService.getAll();
+
+        return res.status(201).json(result);
+    } catch (error) {
+        res.status(404).json({ message: Error.message });
+    }
+});
+
 // Create new event
 router.post('/', async (req, res) => {
     const { name, date, time, location, price, imageUrl, description } = req.body;
@@ -21,11 +32,6 @@ router.post('/', async (req, res) => {
     } catch (error) {
         res.status(400).json({ message: Error.message });
     }
-});
-
-// Get all events
-router.get('/', (req, res) => {
-    res.send('Events');
 });
 
 // Get one event

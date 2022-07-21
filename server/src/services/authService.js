@@ -15,6 +15,7 @@ exports.register = async ({ email, password, alias }) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
+
     let createdUser = '';
 
     if (alias) {

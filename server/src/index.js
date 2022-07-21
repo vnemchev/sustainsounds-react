@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 
 const eventController = require('./controllers/eventController');
 const authController = require('./controllers/authController');
+const userController = require('./controllers/userController');
 const cors = require('./middlewares/cors');
 
 async function start() {
@@ -27,6 +28,7 @@ async function start() {
 
     app.use('/events', eventController);
     app.use('/auth', authController);
+    app.use('/user', userController)
 
     app.listen(3030, () => console.log('REST Service started on port 3030'));
 }
