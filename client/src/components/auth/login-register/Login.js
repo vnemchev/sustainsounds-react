@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import * as userService from '../../../services/userService';
+// import * as userService from '../../../services/userService';
 
 const Login = () => {
     const [loginData, setLoginData] = useState({
@@ -20,7 +20,7 @@ const Login = () => {
     const changeHandler = e => {
         setLoginData(state => ({
             ...state,
-            [e.target.name]: e.target.value,
+            [e.target.name]: e.target.value, 
         }));
     };
 
