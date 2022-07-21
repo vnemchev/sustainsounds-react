@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const raverSchema = new mongoose.Schema({
+const fanSchema = new mongoose.Schema({
     email: {
         type: String,
         required: [true, 'Email is required!'],
@@ -17,6 +17,6 @@ const raverSchema = new mongoose.Schema({
     ],
 });
 
-const Raver = mongoose.model('Raver', raverSchema);
+const Fan = mongoose.model('Fan', fanSchema);
 
-module.exports = Raver;
+module.exports = Fan;

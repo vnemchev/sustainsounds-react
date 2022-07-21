@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as eventService from '../../../services/eventService';
 
-const Create = () => {
+const CreateEvent = () => {
     const [event, setEvent] = useState({
         name: '',
         date: '',
@@ -86,4 +86,4 @@ const Create = () => {
     );
 };
 
-export default Create;
+export default CreateEvent;

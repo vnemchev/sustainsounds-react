@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import * as userService from '../../../services/userService';
+import * as userService from '../../services/userService';
 
 const Register = () => {
     const [registerData, setRegisterData] = useState({

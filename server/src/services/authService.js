@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const Artist = require('../models/users/Artist');
-const Raver = require('../models/users/Raver');
+const Fan = require('../models/users/Fan');
 
 const SALT_ROUNDS = 10;
 const JWT_SECRET = 'hjokslf87^34h#uf893jn_juiq28';
@@ -24,7 +24,7 @@ exports.register = async ({ email, password, alias }) => {
             alias,
         });
     } else {
-        createdUser = await Raver.create({
+        createdUser = await Fan.create({
             email,
             password: hashedPassword,
         });
@@ -75,7 +75,7 @@ const createSession = user => {
 const checkIfExistingUser = async email => {
     const settings = { email: new RegExp(`^${email}$`, 'i') };
 
-    const user = (await Artist.findOne(settings)) || (await Raver.findOne(settings));
+    const user = (await Artist.findOne(settings)) || (await Fan.findOne(settings));
 
     return user;
 };

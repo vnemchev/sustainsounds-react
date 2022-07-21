@@ -1,1 +1,5 @@
-const Home = () => {};
+const Home = () => {
+    <>
+        
+    </>
+};
