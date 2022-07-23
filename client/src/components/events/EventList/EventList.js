@@ -4,7 +4,7 @@ const EventList = ({ events }) => {
     return (
         <div>
             {events?.map(x => (
-                <EventCard key={x} event={x} />
+                <EventCard key={x._id} event={x} />
             ))}
         </div>
     );

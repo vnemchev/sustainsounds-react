@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { formatDate } from '../../../utils/util';
 
 import * as eventService from '../../../services/eventService';
 
@@ -11,11 +12,11 @@ const EventDetails = () => {
     useEffect(() => {
         eventService
             .getOne(eventId)
-            .then(e => {
-                setEvent(e);
+            .then(result => {
+                setEvent(result);
             })
             .catch(err => alert(err.message));
-    }, []);
+    }, [eventId]);
 
     return (
         <div>
@@ -24,7 +25,7 @@ const EventDetails = () => {
                 <div className="event-details">
                     <h3>{event.name}</h3>
                     <h5>
-                        {event.date}, {event.time}, {event.location}
+                        {formatDate(event.date)}, {event.time}, {event.location}
                     </h5>
                     <p>{event.price}</p>
                     <p>{event.description}</p>
