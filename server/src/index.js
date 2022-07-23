@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const eventController = require('./controllers/eventController');
 const authController = require('./controllers/authController');
-const artistController = require('./controllers/arstistController');
+const artistController = require('./controllers/artistController');
 const cors = require('./middlewares/cors');
 
 async function start() {
@@ -28,7 +28,7 @@ async function start() {
 
     app.use('/auth', authController);
     app.use('/events', eventController);
-    app.use('/artists', artistController)
+    app.use('/artists', artistController);
 
     app.listen(3030, () => console.log('REST Service started on port 3030'));
 }

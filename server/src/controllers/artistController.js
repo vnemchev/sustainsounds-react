@@ -13,13 +13,13 @@ router.get('/', async (req, res) => {
 });
 
 // Get one artist
-router.get('/:artistId', (req, res) => {
+router.get('/:artistId', async (req, res) => {
     try {
-        const result = await artistService.getOne(req.body.artistId);
+        const result = await artistService.getOne(req.params.artistId);
 
         return res.status(201).json(result);
     } catch (error) {
-        res.status(404).json({ message: Error.message });    
+        res.status(404).json({ message: Error.message });
     }
 });
 

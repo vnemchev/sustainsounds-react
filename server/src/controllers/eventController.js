@@ -14,7 +14,8 @@ router.get('/', async (req, res) => {
 
 // Create new event
 router.post('/', async (req, res) => {
-    const { name, date, time, location, price, imageUrl, description } = req.body;
+    const { name, date, time, location, price, imageUrl, description } =
+        req.body;
     try {
         const data = {
             name,
@@ -35,8 +36,14 @@ router.post('/', async (req, res) => {
 });
 
 // Get one event
-router.get('/:eventId', (req, res) => {
-    res.send('Events');
+router.get('/:eventId', async (req, res) => {
+    try {
+        const result = await eventService.getOne(req.params.eventId);
+
+        return res.status(201).json(result);
+    } catch (error) {
+        res.status(404).json({ message: Error.message });
+    }
 });
 
 // Edit existing event
