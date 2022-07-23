@@ -35,17 +35,17 @@ router.post('/', async (req, res) => {
 });
 
 // Get one event
-router.get('/:id', (req, res) => {
+router.get('/:eventId', (req, res) => {
     res.send('Events');
 });
 
 // Edit existing event
-router.put('/:id', (req, res) => {
+router.put('/:eventId', (req, res) => {
     res.send('Events');
 });
 
 // Delete existing event
-router.delete('/:id', (req, res) => {
+router.delete('/:eventId', (req, res) => {
     res.send('Events');
 });
 

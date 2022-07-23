@@ -16,7 +16,7 @@ router.post('/register', async (req, res) => {
         const data = { email, password, alias };
 
         const result = await authService.register(data);
-        console.log(result);
+        
         return res.status(201).json(result);
     } catch (error) {
         res.status(400).json({ message: Error.message });

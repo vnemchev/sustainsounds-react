@@ -1,8 +1,8 @@
 const Event = require('../models/Event');
 
-exports.getAll = () => Event.find({});
-
 exports.getOne = eventId => Event.findById(eventId);
+
+exports.getAll = () => Event.find({});
 
 exports.create = async ({ name, date, time, location, price, imageUrl, description }) => {
     const isExisting = await checkIfExistingEvent(name);
