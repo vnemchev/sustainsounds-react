@@ -47,8 +47,25 @@ router.get('/:eventId', async (req, res) => {
 });
 
 // Edit existing event
-router.put('/:eventId', (req, res) => {
-    res.send('Events');
+router.put('/:eventId', async (req, res) => {
+    const { name, date, time, location, price, imageUrl, description } =
+        req.body;
+    try {
+        const data = {
+            name,
+            date,
+            time,
+            location,
+            price,
+            imageUrl,
+            description,
+        };
+        const result = await eventService.edit(req.params.eventId, data);
+
+        return res.status(201).json(result);
+    } catch (error) {
+        res.status(404).json({ message: Error.message });
+    }
 });
 
 // Delete existing event

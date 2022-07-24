@@ -40,3 +40,22 @@ export const create = async eventData => {
         throw new Error('Unable to create event');
     }
 };
+
+export const edit = async (eventId, eventData) => {
+    const response = await fetch(`${baseUrl}/${eventId}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify(eventData),
+    });
+
+    console.log(response);
+    if (response.ok) {
+        const event = await response.json();
+
+        return event;
+    } else {
+        throw new Error('Unable to edit event');
+    }
+};

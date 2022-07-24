@@ -8,9 +8,11 @@ import Home from './components/Home/Home';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Profile from './components/profile/Profile/Profile';
+import About from './components/About/About';
 import EventList from './components/events/EventList/EventList';
 import EventCreate from './components/events/EventCreate/EventCreate';
 import EventDetails from './components/events/EventDetails/EventDetails';
+import EventEdit from './components/events/EventEdit/EventEdit';
 import ArtistList from './components/artists/ArtistList/ArtistList';
 
 import * as eventService from './services/eventService';
@@ -42,7 +44,7 @@ const App = () => {
 
                     <Route path="/create" element={<EventCreate />}></Route>
 
-                    <Route path="/about" element={<h1>About</h1>}></Route>
+                    <Route path="/about" element={<About />}></Route>
 
                     <Route path="/login" element={<Login />}></Route>
 
@@ -50,9 +52,15 @@ const App = () => {
 
                     <Route path="/profile" element={<Profile />}></Route>
 
-                    <Route path="/events/:eventId" element={<EventDetails />}>
-                        details
-                    </Route>
+                    <Route
+                        path="/events/:eventId"
+                        element={<EventDetails />}
+                    ></Route>
+
+                    <Route
+                        path="/events/:eventId/edit"
+                        element={<EventEdit />}
+                    ></Route>
                 </Routes>
             </div>
 

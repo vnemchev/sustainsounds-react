@@ -1,5 +1,9 @@
-export const formatDate = date => {
+export const formatDate = (date, option) => {
     const [year, month, day] = date.split('-');
 
-    return `${day}.${month}.${year}`;
+    if (option === 'display') {
+        return `${day}.${month}.${year}`;
+    } else if (option === 'edit') {
+        return `${day}/${month}/${year}`;
+    }
 };

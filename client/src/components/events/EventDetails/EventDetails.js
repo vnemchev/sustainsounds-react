@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { formatDate } from '../../../utils/util';
 
 import * as eventService from '../../../services/eventService';
 
 const EventDetails = () => {
     const [event, setEvent] = useState();
-
     const { eventId } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         eventService
@@ -16,7 +16,7 @@ const EventDetails = () => {
                 setEvent(result);
             })
             .catch(err => alert(err.message));
-    }, [eventId]);
+    }, [event, eventId]);
 
     return (
         <div>
@@ -25,10 +25,22 @@ const EventDetails = () => {
                 <div className="event-details">
                     <h3>{event.name}</h3>
                     <h5>
-                        {formatDate(event.date)}, {event.time}, {event.location}
+                        {formatDate(event.date, 'display')}, {event.time},
+                        {event.location}
                     </h5>
                     <p>{event.price}</p>
                     <p>{event.description}</p>
+                    <div>
+                        <button
+                            onClick={() =>
+                                navigate(`/events/${event._id}/edit`)
+                            }
+                        >
+                            Edit
+                        </button>
+
+                        <button>Delete</button>
+                    </div>
                 </div>
             )}
         </div>
