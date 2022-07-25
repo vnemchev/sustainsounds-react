@@ -16,7 +16,7 @@ const EventDetails = () => {
                 setEvent(result);
             })
             .catch(err => alert(err.message));
-    }, [event, eventId]);
+    }, [eventId]);
 
     return (
         <div>

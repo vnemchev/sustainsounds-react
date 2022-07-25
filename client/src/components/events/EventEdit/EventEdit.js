@@ -22,14 +22,14 @@ const EventEdit = () => {
             .getOne(eventId)
             .then(res => setEvent(res))
             .catch(err => alert(err.message));
-    }, [eventId]);
+    }, []);
 
     const submitHandler = async e => {
         e.preventDefault();
 
         eventService.edit(eventId, event).then(res => console.log(res));
 
-        navigate(`/events/${eventId}`);
+        navigate(`/events/${eventId}`, { state: { ...event } });
     };
 
     const changeHandler = e => {
