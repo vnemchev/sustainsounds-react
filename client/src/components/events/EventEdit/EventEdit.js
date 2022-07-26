@@ -22,7 +22,7 @@ const EventEdit = () => {
             .getOne(eventId)
             .then(res => setEvent(res))
             .catch(err => alert(err.message));
-    }, [event]);
+    }, []);
 
     const submitHandler = e => {
         e.preventDefault();

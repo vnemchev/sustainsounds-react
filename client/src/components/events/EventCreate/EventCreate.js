@@ -1,4 +1,6 @@
 import { useState } from 'react';
+
+import useFetch from '../../../hooks/useFetch';
 import * as eventService from '../../../services/eventService';
 
 const EventCreate = () => {
@@ -34,17 +36,35 @@ const EventCreate = () => {
 
                 <div>
                     <label htmlFor="event-name">name: </label>
-                    <input type="text" id="event-name" name="name" value={event.name} onChange={changeHandler}></input>
+                    <input
+                        type="text"
+                        id="event-name"
+                        name="name"
+                        value={event.name}
+                        onChange={changeHandler}
+                    ></input>
                 </div>
 
                 <div>
                     <label htmlFor="event-date">date: </label>
-                    <input type="date" id="event-date" name="date" value={event.date} onChange={changeHandler}></input>
+                    <input
+                        type="date"
+                        id="event-date"
+                        name="date"
+                        value={event.date}
+                        onChange={changeHandler}
+                    ></input>
                 </div>
 
                 <div>
                     <label htmlFor="event-time">time: </label>
-                    <input type="time" id="event-time" name="time" value={event.time} onChange={changeHandler}></input>
+                    <input
+                        type="time"
+                        id="event-time"
+                        name="time"
+                        value={event.time}
+                        onChange={changeHandler}
+                    ></input>
                 </div>
 
                 <div>
