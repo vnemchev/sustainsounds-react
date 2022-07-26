@@ -55,6 +55,7 @@ const App = () => {
                     <Route
                         path="/events/:eventId"
                         element={<EventDetails />}
+                        
                     ></Route>
 
                     <Route

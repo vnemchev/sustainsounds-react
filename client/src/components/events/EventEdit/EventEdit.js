@@ -22,12 +22,15 @@ const EventEdit = () => {
             .getOne(eventId)
             .then(res => setEvent(res))
             .catch(err => alert(err.message));
-    }, []);
+    }, [event]);
 
-    const submitHandler = async e => {
+    const submitHandler = e => {
         e.preventDefault();
 
-        eventService.edit(eventId, event).then(res => console.log(res));
+        eventService
+            .edit(eventId, event)
+            .then(res => setEvent(res))
+            .catch(err => console.log(err));
 
         navigate(`/events/${eventId}`, { state: { ...event } });
     };

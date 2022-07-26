@@ -5,7 +5,7 @@ import { formatDate } from '../../../utils/util';
 import * as eventService from '../../../services/eventService';
 
 const EventDetails = () => {
-    const [event, setEvent] = useState();
+    const [event, setEvent] = useState({});
     const { eventId } = useParams();
     const navigate = useNavigate();
 
@@ -13,7 +13,9 @@ const EventDetails = () => {
         eventService
             .getOne(eventId)
             .then(result => {
-                setEvent(result);
+                setEvent(state => ({
+                    
+                }));
             })
             .catch(err => alert(err.message));
     }, [eventId]);
