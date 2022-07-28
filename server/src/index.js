@@ -1,16 +1,19 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
+const cors = require('./middlewares/cors');
+const auth = require('./middlewares/auth');
 const eventController = require('./controllers/eventController');
 const authController = require('./controllers/authController');
 const artistController = require('./controllers/artistController');
-const cors = require('./middlewares/cors');
 
 async function start() {
     try {
         await mongoose.connect('mongodb://localhost:27017/sustainsounds');
 
-        mongoose.connection.on('open', () => console.log('Db connection established.'));
+        mongoose.connection.on('open', () =>
+            console.log('Db connection established.'),
+        );
     } catch (error) {
         console.log('Error connecting to database');
         return process.exit(1);
@@ -25,6 +28,7 @@ async function start() {
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
     app.use(cors());
+    app.use(auth());
 
     app.use('/auth', authController);
     app.use('/events', eventController);

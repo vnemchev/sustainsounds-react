@@ -3,9 +3,12 @@ const jwt = require('jsonwebtoken');
 
 const Artist = require('../models/users/Artist');
 const Fan = require('../models/users/Fan');
+const getUsername = require('../util');
 
 const SALT_ROUNDS = 10;
 const JWT_SECRET = 'hjokslf87^34h#uf893jn_juiq28';
+
+const blacklist = new Set();
 
 exports.register = async ({ email, password, alias }) => {
     const existing = await checkIfExistingUser(email);
@@ -50,7 +53,9 @@ exports.login = async ({ email, password }) => {
     return createSession(user);
 };
 
-exports.logout = () => {};
+exports.logout = token => {
+    blacklist.add(token);
+};
 
 const createSession = user => {
     const payload = {
@@ -58,16 +63,17 @@ const createSession = user => {
         email: user.email,
     };
 
-    const token = jwt.sign(payload, JWT_SECRET);
+    const sessionToken = jwt.sign(payload, JWT_SECRET);
 
     const result = {
         _id: user._id,
         email: user.email,
-        token,
+        username: getUsername(user.email),
+        sessionToken,
     };
 
     if (user.alias) {
-        result['alias'] = user.alias;
+        result.alias = user.alias;
     }
 
     return result;
@@ -76,7 +82,15 @@ const createSession = user => {
 const checkIfExistingUser = async email => {
     const settings = { email: new RegExp(`^${email}$`, 'i') };
 
-    const user = (await Artist.findOne(settings)) || (await Fan.findOne(settings));
+    const user =
+        (await Artist.findOne(settings)) || (await Fan.findOne(settings));
 
     return user;
+};
+
+exports.validateToken = token => {
+    if (blacklist.has(token)) {
+        throw new Error('Token is invalid!');
+    }
+    return jwt.verify(token, JWT_SECRET);
 };

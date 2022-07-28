@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const eventService = require('../services/eventService');
+const { isAuth, isOwner } = require('../middlewares/guards');
 
 // Get all events
 router.get('/', async (req, res) => {
@@ -13,7 +14,7 @@ router.get('/', async (req, res) => {
 });
 
 // Create new event
-router.post('/', async (req, res) => {
+router.post('/', isAuth(), async (req, res) => {
     const { name, date, time, location, price, imageUrl, description } =
         req.body;
     try {
@@ -25,6 +26,7 @@ router.post('/', async (req, res) => {
             price,
             imageUrl,
             description,
+            _ownerId: req.user._id,
         };
 
         const result = await eventService.create(data);

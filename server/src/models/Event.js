@@ -22,7 +22,7 @@ const eventSchema = new mongoose.Schema({
     },
     imageUrl: { type: String },
     description: { type: String },
-    owner: {
+    _ownerId: {
         type: mongoose.Types.ObjectId,
         ref: 'Artist',
     },

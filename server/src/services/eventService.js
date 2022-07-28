@@ -12,6 +12,7 @@ exports.create = async ({
     price,
     imageUrl,
     description,
+    _ownerId,
 }) => {
     const isExisting = await checkIfExistingEvent(name);
 
@@ -27,6 +28,7 @@ exports.create = async ({
         price,
         imageUrl,
         description,
+        _ownerId,
     });
 
     return createdEvent;
@@ -36,11 +38,11 @@ exports.edit = async (
     eventId,
     { _id, name, date, time, location, price, imageUrl, description },
 ) => {
-    // const isExisting = await checkIfExistingEvent(name);
+    const isExisting = await checkIfExistingEvent(name);
 
-    // if (isExisting) {
-    //     throw new Error('This event name is taken');
-    // }
+    if (!isExisting) {
+        throw new Error("This event doesn't exist!");
+    }
 
     const editedEvent = await Event.findByIdAndUpdate(
         eventId,
