@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import * as userService from '../../services/userService';
+import * as authService from '../../services/authService';
+
 
 const Register = () => {
     const [registerData, setRegisterData] = useState({
@@ -24,7 +25,7 @@ const Register = () => {
         if (isArtist) {
             userInfo.alias = alias;
         }
-        const createdUser = await userService.register(userInfo);
+        const createdUser = await authService.register(userInfo);
         console.log(createdUser);
     };
 

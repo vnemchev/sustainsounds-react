@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { Error } = require('mongoose');
 const authService = require('../services/authService');
 
 // Register
@@ -11,15 +10,15 @@ router.post('/register', async (req, res) => {
             message: 'Passwords must match!',
         };
     }
-
+    
     try {
         const data = { email, password, alias };
 
         const result = await authService.register(data);
-        
+
         return res.status(201).json(result);
     } catch (error) {
-        res.status(400).json({ message: Error.message });
+        res.status(400).json({ message: error.message });
     }
 });
 
@@ -34,7 +33,7 @@ router.post('/login', async (req, res) => {
 
         return res.status(200).json(result);
     } catch (error) {
-        res.status(400).json({ message: Error.message });
+        res.status(400).json({ message: error.message });
     }
 });
 

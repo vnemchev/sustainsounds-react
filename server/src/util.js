@@ -1,3 +1,5 @@
 exports.getUsername = email => {
-    return email.split('@')[0];
+    const splitEmail = email.split('@');
+    
+    return splitEmail[0];
 };

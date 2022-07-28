@@ -63,12 +63,13 @@ const createSession = user => {
         email: user.email,
     };
 
+    // const username = getUsername(user.email);
     const sessionToken = jwt.sign(payload, JWT_SECRET);
 
     const result = {
         _id: user._id,
         email: user.email,
-        username: getUsername(user.email),
+        // username,
         sessionToken,
     };
 

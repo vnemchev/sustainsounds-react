@@ -19,9 +19,9 @@ const EventCreate = () => {
     const submitHandler = async e => {
         e.preventDefault();
 
-        const createdEvent = await eventService.create(event);
+        await eventService.create(event);
 
-        navigate('/events')
+        navigate('/events');
     };
 
     const changeHandler = e => {

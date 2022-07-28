@@ -20,14 +20,13 @@ const request = async (method, endpoint, data) => {
 
     try {
         const response = await fetch(host + endpoint, options);
+        // console.log(response.json());
         if (response.ok) {
             return response.json();
-        } else {
-            throw new Error('Bad request!');
-        }
+        } 
     } catch (error) {
         alert(error.message);
-        throw error;
+        //throw error;
     }
 };
 
