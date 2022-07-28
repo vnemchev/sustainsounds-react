@@ -22,7 +22,7 @@ const EventEdit = () => {
             .getOne(eventId)
             .then(res => setEvent(res))
             .catch(err => alert(err.message));
-    }, []);
+    }, [eventId]);
 
     const submitHandler = e => {
         e.preventDefault();
@@ -32,7 +32,7 @@ const EventEdit = () => {
             .then(res => setEvent(res))
             .catch(err => console.log(err));
 
-        navigate(`/events/${eventId}`, { state: { ...event } });
+        navigate(`/events/${eventId}`);
     };
 
     const changeHandler = e => {

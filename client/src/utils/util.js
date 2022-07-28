@@ -7,3 +7,12 @@ export const formatDate = (date, option) => {
         return `${day}/${month}/${year}`;
     }
 };
+
+export const getAccessToken = () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+        return user.accessToken;
+    } else {
+        return null;
+    }
+};

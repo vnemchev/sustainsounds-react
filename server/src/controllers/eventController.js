@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 });
 
 // Create new event
-router.post('/', isAuth(), async (req, res) => {
+router.post('/', async (req, res) => {
     const { name, date, time, location, price, imageUrl, description } =
         req.body;
     try {
@@ -26,7 +26,7 @@ router.post('/', isAuth(), async (req, res) => {
             price,
             imageUrl,
             description,
-            _ownerId: req.user._id,
+            // _ownerId: req.user._id,
         };
 
         const result = await eventService.create(data);

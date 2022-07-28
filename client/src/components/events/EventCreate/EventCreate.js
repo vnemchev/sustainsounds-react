@@ -1,9 +1,11 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import useFetch from '../../../hooks/useFetch';
 import * as eventService from '../../../services/eventService';
 
 const EventCreate = () => {
+    const navigate = useNavigate();
     const [event, setEvent] = useState({
         name: '',
         date: '',
@@ -19,7 +21,7 @@ const EventCreate = () => {
 
         const createdEvent = await eventService.create(event);
 
-        console.log(createdEvent);
+        navigate('/events')
     };
 
     const changeHandler = e => {
