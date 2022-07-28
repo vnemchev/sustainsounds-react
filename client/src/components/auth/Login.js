@@ -1,5 +1,5 @@
 import { useState } from 'react';
-// import * as userService from '../../../services/userService';
+import * as authService from '../../services/authService';
 
 const Login = () => {
     const [loginData, setLoginData] = useState({
@@ -10,17 +10,15 @@ const Login = () => {
     const submitHandler = async e => {
         e.preventDefault();
 
-        const { email, password } = loginData;
+        const loggedUser = await authService.login(loginData);
 
-        //const createdUser = await userService.login(loginData);
-
-        console.log(email, password);
+        console.log(loggedUser);
     };
 
     const changeHandler = e => {
         setLoginData(state => ({
             ...state,
-            [e.target.name]: e.target.value, 
+            [e.target.name]: e.target.value,
         }));
     };
 
