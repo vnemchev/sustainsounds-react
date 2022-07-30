@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../../contexts/authContext';
+import { getUsername } from '../../../utils/util';
+
 const Nav = () => {
     const { user } = useContext(AuthContext);
     const isArtist = Boolean(user.alias);
-    console.log(user.email);
 
     return (
         <nav>
@@ -12,15 +13,17 @@ const Nav = () => {
                 <h1>SUSTAINSOUNDS</h1>
             </Link>
 
-            <Link to="/about">About </Link>
-            <Link to="/events">Events </Link>
-            <Link to="/artists">Artists </Link>
+            <Link to="/about">About</Link>
+            <Link to="/events">Events</Link>
+            <Link to="/artists">Artists</Link>
             {user.email ? (
                 <>
-                    <Link to="/profile">Profile </Link>
+                    <Link to="/profile">Profile</Link>
                     <Link to="/logout">Logout</Link>
-                    {isArtist && <Link to="/create">Create </Link>}
-                    <span>Welcome, User!</span>
+                    {isArtist && <Link to="/create">Create</Link>}
+                    <span>
+                        Welcome, {user.alias || getUsername(user.email)}!
+                    </span>
                 </>
             ) : (
                 <>

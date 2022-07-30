@@ -1,5 +1,6 @@
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/authContext';
 
 import * as authService from '../../services/authService';
@@ -62,7 +63,7 @@ const Login = () => {
                     <button type="submit">Login</button>
                 </div>
 
-                <p>I already have an account!</p>
+                <Link to={'/register'}>I don't have an account yet...</Link>
             </form>
         </>
     );

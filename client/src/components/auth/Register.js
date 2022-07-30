@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/authContext';
 
 import * as authService from '../../services/authService';
@@ -7,7 +7,7 @@ import * as authService from '../../services/authService';
 const Register = () => {
     const navigate = useNavigate();
 
-    const { user, userLogin } = useContext(AuthContext);
+    const { userLogin } = useContext(AuthContext);
     const [registerData, setRegisterData] = useState({
         email: '',
         password: '',
@@ -121,7 +121,7 @@ const Register = () => {
                     <button type="submit">register</button>
                 </div>
 
-                <p>I don't have an account yet...</p>
+                <Link to={'/login'}>I already have an account!</Link>
             </form>
         </>
     );
