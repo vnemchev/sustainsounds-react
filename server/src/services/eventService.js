@@ -34,26 +34,21 @@ exports.create = async ({
     return createdEvent;
 };
 
-exports.edit = async (
-    eventId,
-    { _id, name, date, time, location, price, imageUrl, description },
-) => {
-    const editedEvent = await Event.findByIdAndUpdate(
-        eventId,
-        {
-            _id,
-            name,
-            date,
-            time,
-            location,
-            price,
-            imageUrl,
-            description,
-        },
-    );
+exports.edit = async (existing, event) => {
+    existing.name = event.name;
+    existing.date = event.date;
+    existing.time = event.time;
+    existing.location = event.location;
+    existing.price = event.price;
+    existing.imageUrl = event.imageUrl;
+    existing.description = event.description;
 
-    return editedEvent;
+    await existing.save();
+
+    return existing;
 };
+
+exports.remove = async eventId => Event.findByIdAndDelete(eventId);
 
 const checkIfExistingEvent = async name => {
     const settings = { name: new RegExp(`^${name}$`, 'i') };

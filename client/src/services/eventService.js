@@ -15,3 +15,7 @@ export const create = async eventData => {
 export const edit = async (eventId, eventData) => {
     return api.put(`/events/${eventId}`, eventData);
 };
+
+export const remove = async eventId => {
+    return api.del(`/events/${eventId}`);
+};

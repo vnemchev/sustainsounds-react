@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const eventService = require('../services/eventService');
 const { isAuth, isOwner } = require('../middlewares/guards');
+const preload = require('../middlewares/preload');
 
 // Get all events
 router.get('/', async (req, res) => {
@@ -9,7 +10,7 @@ router.get('/', async (req, res) => {
 
         return res.status(201).json(result);
     } catch (error) {
-        res.status(404).json({ message: Error.message });
+        res.status(400).json({ message: 'Bad request!' });
     }
 });
 
@@ -38,41 +39,32 @@ router.post('/', async (req, res) => {
 });
 
 // Get one event
-router.get('/:eventId', async (req, res) => {
-    try {
-        const result = await eventService.getOne(req.params.eventId);
-
-        return res.status(201).json(result);
-    } catch (error) {
-        res.status(404).json({ message: Error.message });
-    }
+router.get('/:eventId', preload(eventService), async (req, res) => {
+    res.json(res.locals.event);
 });
 
 // Edit existing event
-router.put('/:eventId', async (req, res) => {
-    const { name, date, time, location, price, imageUrl, description } =
-        req.body;
+router.put('/:eventId', preload(eventService), async (req, res) => {
     try {
-        const data = {
-            name,
-            date,
-            time,
-            location,
-            price,
-            imageUrl,
-            description,
-        };
-        const result = await eventService.edit(req.params.eventId, data);
+        console.log(res.locals.event);
+        const result = await eventService.edit(res.locals.event, req.body);
 
-        return res.status(201).json(result);
+        return res.json(result);
     } catch (error) {
-        res.status(404).json({ message: Error.message });
+        res.status(400).json({ message: 'Request error!' });
     }
 });
 
 // Delete existing event
-router.delete('/:eventId', (req, res) => {
-    res.send('Events');
+router.delete('/:eventId', async (req, res) => {
+    try {
+        const result = await eventService.remove(req.params.eventId);
+        res.json(result);
+    } catch (error) {
+        res.status(404).json({
+            message: `Event $${req.params.eventId} not found!`,
+        });
+    }
 });
 
 module.exports = router;

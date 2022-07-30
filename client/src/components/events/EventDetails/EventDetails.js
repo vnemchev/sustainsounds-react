@@ -1,12 +1,18 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { formatDate } from '../../../utils/util';
 
+import { formatDate } from '../../../utils/util';
 import useFetch from '../../../hooks/useFetch';
+import * as eventService from '../../../services/eventService';
 
 const EventDetails = () => {
     const { eventId } = useParams();
     const { data, isLoading, error } = useFetch(`/events/${eventId}`);
     const navigate = useNavigate();
+
+    const deleteHandler = () => {
+        eventService.remove(eventId);
+        navigate('/events');
+    };
 
     return (
         <div>
@@ -32,7 +38,7 @@ const EventDetails = () => {
                                 Edit
                             </button>
 
-                            <button>Delete</button>
+                            <button onClick={deleteHandler}>Delete</button>
                         </div>
                     </div>
                 )
