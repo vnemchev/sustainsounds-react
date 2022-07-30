@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 });
 
 // Create new event
-router.post('/', async (req, res) => {
+router.post('/', isAuth(), async (req, res) => {
     const { name, date, time, location, price, imageUrl, description } =
         req.body;
     try {
@@ -44,7 +44,7 @@ router.get('/:eventId', preload(eventService), async (req, res) => {
 });
 
 // Edit existing event
-router.put('/:eventId', preload(eventService), async (req, res) => {
+router.put('/:eventId', preload(eventService), isOwner(), async (req, res) => {
     try {
         console.log(res.locals.event);
         const result = await eventService.edit(res.locals.event, req.body);
@@ -56,7 +56,7 @@ router.put('/:eventId', preload(eventService), async (req, res) => {
 });
 
 // Delete existing event
-router.delete('/:eventId', async (req, res) => {
+router.delete('/:eventId', isAuth(), isOwner(), async (req, res) => {
     try {
         const result = await eventService.remove(req.params.eventId);
         res.json(result);

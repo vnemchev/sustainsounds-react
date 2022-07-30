@@ -1,7 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import useFetch from '../../../hooks/useFetch';
 import * as eventService from '../../../services/eventService';
 
 const EventCreate = () => {

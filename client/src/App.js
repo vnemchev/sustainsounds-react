@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import { AuthProvider } from './contexts/authContext';
 import Header from './components/common/Header/Header';
 import Footer from './components/common/Footer/Footer';
 
@@ -29,43 +30,44 @@ const App = () => {
 
     return (
         <>
-            <Header />
+            <AuthProvider>
+                <Header />
 
-            <div className="main-container">
-                <Routes>
-                    <Route path="/" element={<Home />}></Route>
+                <div className="main-container">
+                    <Routes>
+                        <Route path="/" element={<Home />}></Route>
 
-                    <Route
-                        path="/events"
-                        element={<EventList events={events} />}
-                    ></Route>
+                        <Route
+                            path="/events"
+                            element={<EventList events={events} />}
+                        ></Route>
 
-                    <Route path="/artists" element={<ArtistList />}></Route>
+                        <Route path="/artists" element={<ArtistList />}></Route>
 
-                    <Route path="/create" element={<EventCreate />}></Route>
+                        <Route path="/create" element={<EventCreate />}></Route>
 
-                    <Route path="/about" element={<About />}></Route>
+                        <Route path="/about" element={<About />}></Route>
 
-                    <Route path="/login" element={<Login />}></Route>
+                        <Route path="/login" element={<Login />}></Route>
 
-                    <Route path="/register" element={<Register />}></Route>
+                        <Route path="/register" element={<Register />}></Route>
 
-                    <Route path="/profile" element={<Profile />}></Route>
+                        <Route path="/profile" element={<Profile />}></Route>
 
-                    <Route
-                        path="/events/:eventId"
-                        element={<EventDetails />}
-                        
-                    ></Route>
+                        <Route
+                            path="/events/:eventId"
+                            element={<EventDetails />}
+                        ></Route>
 
-                    <Route
-                        path="/events/:eventId/edit"
-                        element={<EventEdit />}
-                    ></Route>
-                </Routes>
-            </div>
+                        <Route
+                            path="/events/:eventId/edit"
+                            element={<EventEdit />}
+                        ></Route>
+                    </Routes>
+                </div>
 
-            <Footer />
+                <Footer />
+            </AuthProvider>
         </>
     );
 };

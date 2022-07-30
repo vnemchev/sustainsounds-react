@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/authContext';
+
 import * as authService from '../../services/authService';
 
-
 const Register = () => {
+    const { user, userLogin } = useContext(AuthContext);
+    const navigate = useNavigate();
     const [registerData, setRegisterData] = useState({
         email: '',
         password: '',
@@ -14,7 +18,8 @@ const Register = () => {
     const submitHandler = async e => {
         e.preventDefault();
 
-        const { email, password, repeatPassword, isArtist, alias } = registerData;
+        const { email, password, repeatPassword, isArtist, alias } =
+            registerData;
 
         let userInfo = {
             email,
@@ -25,8 +30,12 @@ const Register = () => {
         if (isArtist) {
             userInfo.alias = alias;
         }
-        const createdUser = await authService.register(userInfo);
-        console.log(createdUser);
+
+        authService.register(userInfo).then(res => {
+            console.log(res);
+            userLogin(res);
+            navigate('/');
+        });
     };
 
     const changeHandler = e => {
@@ -42,8 +51,6 @@ const Register = () => {
             isArtist: e.target.checked,
         }));
     };
-
-    console.log(registerData.isArtist);
 
     return (
         <>
