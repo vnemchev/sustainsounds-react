@@ -1,7 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/authContext';
+
 import * as authService from '../../services/authService';
 
 const Login = () => {
+    const navigate = useNavigate();
+    const { userLogin } = useContext(AuthContext);
     const [loginData, setLoginData] = useState({
         email: '',
         password: '',
@@ -10,9 +15,13 @@ const Login = () => {
     const submitHandler = async e => {
         e.preventDefault();
 
-        const loggedUser = await authService.login(loginData);
-
-        console.log(loggedUser);
+        authService
+            .login(loginData)
+            .then(res => {
+                userLogin(res);
+                navigate('/');
+            })
+            .catch(err => console.log(err));
     };
 
     const changeHandler = e => {

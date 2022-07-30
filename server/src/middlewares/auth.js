@@ -10,7 +10,7 @@ module.exports = () => (req, res, next) => {
                 email: payload.email,
                 _id: payload._id,
                 username: payload.username,
-                sessionToken,
+                accessToken,
             };
 
             if (payload.alias) {

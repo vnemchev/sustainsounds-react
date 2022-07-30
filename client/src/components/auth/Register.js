@@ -5,8 +5,9 @@ import { AuthContext } from '../../contexts/authContext';
 import * as authService from '../../services/authService';
 
 const Register = () => {
-    const { user, userLogin } = useContext(AuthContext);
     const navigate = useNavigate();
+
+    const { user, userLogin } = useContext(AuthContext);
     const [registerData, setRegisterData] = useState({
         email: '',
         password: '',
@@ -31,11 +32,13 @@ const Register = () => {
             userInfo.alias = alias;
         }
 
-        authService.register(userInfo).then(res => {
-            console.log(res);
-            userLogin(res);
-            navigate('/');
-        });
+        authService
+            .register(userInfo)
+            .then(res => {
+                userLogin(res);
+                navigate('/');
+            })
+            .catch(err => console.log(err));
     };
 
     const changeHandler = e => {

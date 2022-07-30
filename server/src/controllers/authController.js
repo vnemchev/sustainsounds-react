@@ -10,7 +10,7 @@ router.post('/register', async (req, res) => {
             message: 'Passwords must match!',
         };
     }
-    
+
     try {
         const data = { email, password, alias };
 
@@ -37,4 +37,10 @@ router.post('/login', async (req, res) => {
     }
 });
 
+// Logout
+
+router.post('/logout', (req, res) => {
+    authService.logout(req.user.accessToken);
+    res.status(204).end();
+});
 module.exports = router;

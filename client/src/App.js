@@ -7,6 +7,7 @@ import Footer from './components/common/Footer/Footer';
 
 import Home from './components/Home/Home';
 import Login from './components/auth/Login';
+import Logout from './components/auth/Logout';
 import Register from './components/auth/Register';
 import Profile from './components/profile/Profile/Profile';
 import About from './components/About/About';
@@ -49,6 +50,8 @@ const App = () => {
                         <Route path="/about" element={<About />}></Route>
 
                         <Route path="/login" element={<Login />}></Route>
+
+                        <Route path="/logout" element={<Logout />}></Route>
 
                         <Route path="/register" element={<Register />}></Route>
 

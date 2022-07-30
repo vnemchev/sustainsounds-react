@@ -1,4 +1,5 @@
 const router = require('express').Router();
+
 const eventService = require('../services/eventService');
 const { isAuth, isOwner } = require('../middlewares/guards');
 const preload = require('../middlewares/preload');
