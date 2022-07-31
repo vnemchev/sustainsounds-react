@@ -63,15 +63,21 @@ router.put(
 );
 
 // Delete existing event
-router.delete('/:eventId', isAuth(), isOwner(), async (req, res) => {
-    try {
-        const result = await eventService.remove(req.params.eventId);
-        res.json(result);
-    } catch (error) {
-        res.status(404).json({
-            message: `Event $${req.params.eventId} not found!`,
-        });
-    }
-});
+router.delete(
+    '/:eventId',
+    preload(eventService),
+    isAuth(),
+    isOwner(),
+    async (req, res) => {
+        try {
+            const result = await eventService.remove(req.params.eventId);
+            res.json(result);
+        } catch (error) {
+            res.status(404).json({
+                message: `Event $${req.params.eventId} not found!`,
+            });
+        }
+    },
+);
 
 module.exports = router;

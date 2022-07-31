@@ -12,3 +12,12 @@ export const getUsername = email => {
     const splitEmail = email.split('@');
     return splitEmail[0];
 };
+
+export const getAccessToken = () => {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (user) {
+        return user.accessToken;
+    } else {
+        return null;
+    }
+};
