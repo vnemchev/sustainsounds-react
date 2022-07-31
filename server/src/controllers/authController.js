@@ -38,9 +38,8 @@ router.post('/login', async (req, res) => {
 });
 
 // Logout
-
-router.post('/logout', (req, res) => {
-    authService.logout(req.user.accessToken);
+router.get('/logout', (req, res) => {
+    authService.logout(req.headers['x-authorization']);
     res.status(204).end();
 });
 module.exports = router;

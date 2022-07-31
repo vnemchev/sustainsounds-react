@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 
 const Artist = require('../models/users/Artist');
 const Fan = require('../models/users/Fan');
-const getUsername = require('../util');
 
 const SALT_ROUNDS = 10;
 const JWT_SECRET = 'hjokslf87^34h#uf893jn_juiq28';
@@ -63,14 +62,12 @@ const createSession = user => {
         email: user.email,
     };
 
-    // const username = getUsername(user.email);
-    const sessionToken = jwt.sign(payload, JWT_SECRET);
+    const accessToken = jwt.sign(payload, JWT_SECRET);
 
     const result = {
         _id: user._id,
         email: user.email,
-        // username,
-        sessionToken,
+        accessToken,
     };
 
     if (user.alias) {

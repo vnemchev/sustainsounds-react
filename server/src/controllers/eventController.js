@@ -17,6 +17,8 @@ router.get('/', async (req, res) => {
 
 // Create new event
 router.post('/', isAuth(), async (req, res) => {
+    console.log(req.user);
+
     const { name, date, time, location, price, imageUrl, description } =
         req.body;
     try {

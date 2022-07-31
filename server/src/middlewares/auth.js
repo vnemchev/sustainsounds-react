@@ -1,15 +1,15 @@
 const { validateToken } = require('../services/authService');
 
 module.exports = () => (req, res, next) => {
-    const sessionToken = req.headers['X-Authorization'];
-    if (sessionToken) {
+    const accessToken = req.headers['X-Authorization'];
+    if (accessToken) {
         try {
-            const payload = validateToken(sessionToken);
+            const payload = validateToken(accessToken);
+            console.log(payload);
 
             req.user = {
                 email: payload.email,
                 _id: payload._id,
-                username: payload.username,
                 accessToken,
             };
 

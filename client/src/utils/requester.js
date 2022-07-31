@@ -21,12 +21,14 @@ const request = async (method, endpoint, data) => {
     try {
         const response = await fetch(host + endpoint, options);
         // console.log(response.json());
-        if (response.ok) {
+        if (response.status === 204) {
+            return response;
+        } else {
             return response.json();
-        } 
+        }
     } catch (error) {
         alert(error.message);
-        //throw error;
+        throw error;
     }
 };
 

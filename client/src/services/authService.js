@@ -9,5 +9,5 @@ export const login = async userData => {
 };
 
 export const logout = async accessToken => {
-    return api.post('/auth/logout', accessToken);
+    return api.get('/auth/logout');
 };

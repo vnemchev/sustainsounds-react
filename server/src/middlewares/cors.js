@@ -8,6 +8,7 @@ module.exports = () => (req, res, next) => {
         'Access-Control-Allow-Headers',
         'Content-Type, X-Authorization',
     );
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
 
     next();
 };

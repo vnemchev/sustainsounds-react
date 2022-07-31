@@ -23,7 +23,7 @@ const EventDetails = () => {
             .getOne(eventId)
             .then(res => setEvent(res))
             .catch(err => console.log(err));
-    }, [event, eventId]);
+    }, []);
 
     const deleteHandler = () => {
         eventService.remove(eventId);
