@@ -6,9 +6,9 @@ router.get('/', async (req, res) => {
     try {
         const result = await artistService.getAll();
 
-        return res.status(201).json(result);
+        res.status(200).json(result);
     } catch (error) {
-        res.status(404).json({ message: Error.message });
+        res.status(404).json({ message: error.message });
     }
 });
 
@@ -17,9 +17,22 @@ router.get('/:artistId', async (req, res) => {
     try {
         const result = await artistService.getOne(req.params.artistId);
 
-        return res.status(201).json(result);
+        res.status(200).json(result);
     } catch (error) {
-        res.status(404).json({ message: Error.message });
+        res.status(404).json({ message: error.message });
+    }
+});
+
+// Edit artist info
+router.put('/:artistId', async (req, res) => {
+    try {
+        const artist = await artistService.getOne(req.params.artistId);
+
+        const result = await artistService(artist, req.body);
+
+        res.status(201).json(result);
+    } catch (error) {
+        res.status(404).json({ message: error.message });
     }
 });
 

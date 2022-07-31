@@ -13,7 +13,7 @@ const artistSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Alias is required!'],
     },
-    genre: [{ type: String }],
+    genre: { type: String },
     bio: { type: String },
     imageUrl: { type: String },
     eventsCreated: [

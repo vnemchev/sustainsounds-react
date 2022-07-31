@@ -6,6 +6,7 @@ const auth = require('./middlewares/auth');
 const eventController = require('./controllers/eventController');
 const authController = require('./controllers/authController');
 const artistController = require('./controllers/artistController');
+const fanService = require('./services/artistService');
 
 async function start() {
     try {
@@ -30,6 +31,15 @@ async function start() {
     app.use('/events', eventController);
     app.use('/artists', artistController);
 
+    app.get('/fans/:fanId', async (req, res) => {
+        try {
+            const result = await fanService.getOneFan(req.params.fanId);
+
+            res.status(200).json(result);
+        } catch (error) {
+            res.status(404).json({ message: error.message });
+        }
+    });
     app.listen(3030, () => console.log('REST Service started on port 3030'));
 }
 

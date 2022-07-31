@@ -1,12 +1,21 @@
-const baseUrl = 'http://localhost:3030/artists';
+import * as api from '../utils/requester';
 
 export const getAll = async () => {
-    const response = await fetch(baseUrl);
+    return api.get('/artists');
+};
 
-    if (response.ok) {
-        const events = await response.json();
-        return events;
-    } else {
-        throw new Error('No Events Found!');
-    }
+export const getOneArtist = async artistId => {
+    return api.get(`/artists/${artistId}`);
+};
+
+export const edit = async (artistId, artistData) => {
+    return api.put(`/events/${artistId}`, artistData);
+};
+
+export const remove = async eventId => {
+    return api.del(`/events/${eventId}`);
+};
+
+export const getOneFan = async artistId => {
+    return api.get(`/fans/${artistId}`);
 };

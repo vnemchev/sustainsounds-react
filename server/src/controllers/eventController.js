@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     try {
         const result = await eventService.getAll();
 
-        return res.status(201).json(result);
+        res.status(200).json(result);
     } catch (error) {
         res.status(400).json({ message: 'Bad request!' });
     }
@@ -17,7 +17,7 @@ router.get('/', async (req, res) => {
 
 // Get one event
 router.get('/:eventId', preload(eventService), async (req, res) => {
-    res.json(res.locals.event);
+    res.status(200).json(res.locals.event);
 });
 
 // Create new event
@@ -38,7 +38,7 @@ router.post('/', isAuth(), async (req, res) => {
 
         const result = await eventService.create(data);
 
-        return res.status(201).json(result);
+        res.status(201).json(result);
     } catch (error) {
         res.status(400).json({ message: Error.message });
     }
@@ -52,10 +52,9 @@ router.put(
     isOwner(),
     async (req, res) => {
         try {
-            console.log(res.locals.event);
             const result = await eventService.edit(res.locals.event, req.body);
 
-            return res.json(result);
+            res.status(201).json(result);
         } catch (error) {
             res.status(400).json({ message: 'Request error!' });
         }
@@ -71,7 +70,7 @@ router.delete(
     async (req, res) => {
         try {
             const result = await eventService.remove(req.params.eventId);
-            res.json(result);
+            res.status(204).json(result);
         } catch (error) {
             res.status(404).json({
                 message: `Event $${req.params.eventId} not found!`,
