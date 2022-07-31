@@ -38,6 +38,8 @@ router.post('/', isAuth(), async (req, res) => {
 
         const result = await eventService.create(data);
 
+        await eventService.attachEventToArtist(result._id, req.user._id);
+
         res.status(201).json(result);
     } catch (error) {
         res.status(400).json({ message: Error.message });

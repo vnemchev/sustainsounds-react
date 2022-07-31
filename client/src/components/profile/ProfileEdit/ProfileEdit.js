@@ -5,6 +5,7 @@ import { AuthContext } from '../../../contexts/authContext';
 import * as artistService from '../../../services/artistService';
 
 const ProfileEdit = () => {
+    const navigate = useNavigate();
     const { user } = useContext(AuthContext);
     const [loadedUser, setLoadedUser] = useState({
         alias: '',
@@ -35,11 +36,10 @@ const ProfileEdit = () => {
 
         artistService
             .edit(user._id, loadedUser)
-            .then(res => console.log(res))
+            .then(navigate('/profile'))
             .catch(err => console.log(err));
     };
 
-    console.log(loadedUser.genre);
     return (
         <>
             <form onSubmit={submitHandler}>

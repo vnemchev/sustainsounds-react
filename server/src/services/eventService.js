@@ -1,4 +1,5 @@
 const Event = require('../models/Event');
+const Artist = require('../models/users/Artist');
 
 exports.getOne = eventId => Event.findById(eventId);
 
@@ -56,4 +57,11 @@ const checkIfExistingEvent = async name => {
     const event = await Event.findOne(settings);
 
     return event;
+};
+
+exports.attachEventToArtist = async (eventId, artistId) => {
+    const artist = await Artist.findById(artistId);
+
+    artist.eventsCreated.push(eventId);
+    await artist.save();
 };
