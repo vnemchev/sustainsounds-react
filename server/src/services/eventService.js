@@ -12,7 +12,7 @@ exports.create = async ({
     price,
     imageUrl,
     description,
-    // _ownerId,
+    _ownerId,
 }) => {
     const isExisting = await checkIfExistingEvent(name);
 
@@ -28,7 +28,7 @@ exports.create = async ({
         price,
         imageUrl,
         description,
-        // _ownerId,
+        _ownerId,
     });
 
     return createdEvent;

@@ -15,10 +15,13 @@ router.get('/', async (req, res) => {
     }
 });
 
+// Get one event
+router.get('/:eventId', preload(eventService), async (req, res) => {
+    res.json(res.locals.event);
+});
+
 // Create new event
 router.post('/', isAuth(), async (req, res) => {
-    console.log(req.user);
-
     const { name, date, time, location, price, imageUrl, description } =
         req.body;
     try {
@@ -30,7 +33,7 @@ router.post('/', isAuth(), async (req, res) => {
             price,
             imageUrl,
             description,
-            // _ownerId: req.user._id,
+            _ownerId: req.user._id,
         };
 
         const result = await eventService.create(data);
@@ -41,22 +44,23 @@ router.post('/', isAuth(), async (req, res) => {
     }
 });
 
-// Get one event
-router.get('/:eventId', preload(eventService), async (req, res) => {
-    res.json(res.locals.event);
-});
-
 // Edit existing event
-router.put('/:eventId', preload(eventService), isOwner(), async (req, res) => {
-    try {
-        console.log(res.locals.event);
-        const result = await eventService.edit(res.locals.event, req.body);
+router.put(
+    '/:eventId',
+    preload(eventService),
+    isAuth(),
+    isOwner(),
+    async (req, res) => {
+        try {
+            console.log(res.locals.event);
+            const result = await eventService.edit(res.locals.event, req.body);
 
-        return res.json(result);
-    } catch (error) {
-        res.status(400).json({ message: 'Request error!' });
-    }
-});
+            return res.json(result);
+        } catch (error) {
+            res.status(400).json({ message: 'Request error!' });
+        }
+    },
+);
 
 // Delete existing event
 router.delete('/:eventId', isAuth(), isOwner(), async (req, res) => {
