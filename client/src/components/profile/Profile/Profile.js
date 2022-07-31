@@ -21,7 +21,8 @@ const Profile = () => {
                 .then(res => setLoadedUser(res))
                 .catch(err => console.log(err));
         }
-    });
+    }, []);
+
     return (
         <>
             {loadedUser.alias && <p>Alias: {loadedUser.alias}</p>}

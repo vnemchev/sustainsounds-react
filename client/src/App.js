@@ -10,6 +10,7 @@ import Login from './components/auth/Login';
 import Logout from './components/auth/Logout';
 import Register from './components/auth/Register';
 import Profile from './components/profile/Profile/Profile';
+import ProfileEdit from './components/profile/ProfileEdit/ProfileEdit';
 import About from './components/About/About';
 import EventList from './components/events/EventList/EventList';
 import EventCreate from './components/events/EventCreate/EventCreate';
@@ -56,6 +57,11 @@ const App = () => {
                         <Route path="/register" element={<Register />}></Route>
 
                         <Route path="/profile" element={<Profile />}></Route>
+
+                        <Route
+                            path="/profile/edit"
+                            element={<ProfileEdit />}
+                        ></Route>
 
                         <Route
                             path="/events/:eventId"

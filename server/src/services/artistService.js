@@ -9,8 +9,8 @@ exports.getOneFan = fanId => Fan.findById(fanId);
 
 exports.editArtist = async (existing, artist) => {
     existing.alias = artist.alias;
-    existing.genre = artist.genre;
     existing.bio = artist.bio;
+    existing.genre = artist.genre;
     existing.imageUrl = artist.imageUrl;
 
     await existing.save();

@@ -9,11 +9,11 @@ export const getOneArtist = async artistId => {
 };
 
 export const edit = async (artistId, artistData) => {
-    return api.put(`/events/${artistId}`, artistData);
+    return api.put(`/artists/${artistId}`, artistData);
 };
 
 export const remove = async eventId => {
-    return api.del(`/events/${eventId}`);
+    return api.del(`/artists/${eventId}`);
 };
 
 export const getOneFan = async artistId => {

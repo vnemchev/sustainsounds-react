@@ -28,7 +28,7 @@ router.put('/:artistId', async (req, res) => {
     try {
         const artist = await artistService.getOne(req.params.artistId);
 
-        const result = await artistService(artist, req.body);
+        const result = await artistService.editArtist(artist, req.body);
 
         res.status(201).json(result);
     } catch (error) {
