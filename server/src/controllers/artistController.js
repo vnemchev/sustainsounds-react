@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const artistService = require('../services/artistService');
+const userService = require('../services/userService');
 
 // Get all artists
 router.get('/', async (req, res) => {
     try {
-        const result = await artistService.getAll();
+        const result = await artistService.getAllArtists();
 
         res.status(200).json(result);
     } catch (error) {
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 // Get one artist
 router.get('/:artistId', async (req, res) => {
     try {
-        const result = await artistService.getOne(req.params.artistId);
+        const result = await artistService.getOneArtist(req.params.artistId);
 
         res.status(200).json(result);
     } catch (error) {

@@ -3,10 +3,12 @@ const mongoose = require('mongoose');
 
 const cors = require('./middlewares/cors');
 const auth = require('./middlewares/auth');
-const eventController = require('./controllers/eventController');
+
 const authController = require('./controllers/authController');
+const eventController = require('./controllers/eventController');
 const artistController = require('./controllers/artistController');
-const fanService = require('./services/artistService');
+
+const userService = require('./services/userService');
 
 async function start() {
     try {
@@ -33,7 +35,7 @@ async function start() {
 
     app.get('/fans/:fanId', async (req, res) => {
         try {
-            const result = await fanService.getOneFan(req.params.fanId);
+            const result = await userService.getOneFan(req.params.fanId);
 
             res.status(200).json(result);
         } catch (error) {

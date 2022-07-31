@@ -1,6 +1,8 @@
 const router = require('express').Router();
 
 const eventService = require('../services/eventService');
+const userService = require('../services/userService');
+
 const { isAuth, isOwner } = require('../middlewares/guards');
 const preload = require('../middlewares/preload');
 
@@ -38,7 +40,7 @@ router.post('/', isAuth(), async (req, res) => {
 
         const result = await eventService.create(data);
 
-        await eventService.attachEventToArtist(result._id, req.user._id);
+        await userService.attachEventToArtist(result._id, req.user._id);
 
         res.status(201).json(result);
     } catch (error) {

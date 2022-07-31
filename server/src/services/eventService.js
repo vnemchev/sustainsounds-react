@@ -59,9 +59,3 @@ const checkIfExistingEvent = async name => {
     return event;
 };
 
-exports.attachEventToArtist = async (eventId, artistId) => {
-    const artist = await Artist.findById(artistId);
-
-    artist.eventsCreated.push(eventId);
-    await artist.save();
-};
