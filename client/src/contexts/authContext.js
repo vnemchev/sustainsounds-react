@@ -14,12 +14,17 @@ export const AuthProvider = ({ children }) => {
         setAuth({});
     };
 
+    const aliasUpdate = alias => {
+        setAuth(state => ({ ...state, alias }));
+    };
+
     return (
         <AuthContext.Provider
             value={{
                 user: auth,
                 userLogin,
                 userLogout,
+                aliasUpdate,
                 isAuthenticated: Boolean(auth.accessToken),
             }}
         >

@@ -2,11 +2,11 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../../contexts/authContext';
-import * as artistService from '../../../services/artistService';
+import * as userService from '../../../services/userService';
 
 const ProfileEdit = () => {
     const navigate = useNavigate();
-    const { user } = useContext(AuthContext);
+    const { user, aliasUpdate } = useContext(AuthContext);
     const [loadedUser, setLoadedUser] = useState({
         alias: '',
         genre: '',
@@ -15,7 +15,7 @@ const ProfileEdit = () => {
     });
 
     useEffect(() => {
-        artistService
+        userService
             .getOneArtist(user._id)
             .then(res => {
                 setLoadedUser(state => ({ ...state, ...res }));
@@ -34,9 +34,12 @@ const ProfileEdit = () => {
     const submitHandler = e => {
         e.preventDefault();
 
-        artistService
-            .edit(user._id, loadedUser)
-            .then(navigate('/profile'))
+        userService
+            .editArtist(user._id, loadedUser)
+            .then(res => {
+                aliasUpdate(res.alias);
+                navigate('/profile');
+            })
             .catch(err => console.log(err));
     };
 

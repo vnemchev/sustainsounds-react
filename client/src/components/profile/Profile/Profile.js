@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../../contexts/authContext';
-import * as artistService from '../../../services/artistService';
+import * as userService from '../../../services/userService';
 
 const Profile = () => {
     const { user } = useContext(AuthContext);
@@ -11,12 +11,12 @@ const Profile = () => {
 
     useEffect(() => {
         if (user.alias) {
-            artistService
+            userService
                 .getOneArtist(user._id)
                 .then(res => setLoadedUser(res))
                 .catch(err => console.log(err));
         } else {
-            artistService
+            userService
                 .getOneFan(user._id)
                 .then(res => setLoadedUser(res))
                 .catch(err => console.log(err));
