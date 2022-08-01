@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import { AuthProvider } from './contexts/authContext';
-import { GameProvider } from './contexts/eventContext';
+import { EventProvider } from './contexts/eventContext';
 
 import Header from './components/common/Header/Header';
 import Footer from './components/common/Footer/Footer';
@@ -22,21 +22,21 @@ import About from './components/About/About';
 import * as eventService from './services/eventService';
 
 const App = () => {
-    const [events, setEvents] = useState([]);
+    // const [events, setEvents] = useState([]);
 
-    useEffect(() => {
-        eventService
-            .getAll()
-            .then(res => setEvents(res))
-            .catch(err => alert(err.message));
-    }, []);
+    // useEffect(() => {
+    //     eventService
+    //         .getAll()
+    //         .then(res => setEvents(res))
+    //         .catch(err => alert(err.message));
+    // }, []);
 
     return (
         <>
             <AuthProvider>
-                <Header />
+                <EventProvider>
+                    <Header />
 
-                <GameProvider>
                     <main className="main-container">
                         <Routes>
                             <Route path="/login" element={<Login />}></Route>
@@ -52,7 +52,7 @@ const App = () => {
 
                             <Route
                                 path="/events"
-                                element={<EventList events={events} />}
+                                element={<EventList />}
                             ></Route>
 
                             <Route
@@ -88,9 +88,9 @@ const App = () => {
                             <Route path="/about" element={<About />}></Route>
                         </Routes>
                     </main>
-                </GameProvider>
 
-                <Footer />
+                    <Footer />
+                </EventProvider>
             </AuthProvider>
         </>
     );

@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { EventContext } from '../../../contexts/eventContext';
 
 import * as eventService from '../../../services/eventService';
 
 const EventCreate = () => {
     const navigate = useNavigate();
+    const { eventCreate } = useContext(EventContext);
+
     const [event, setEvent] = useState({
         name: '',
         date: '',
@@ -20,7 +24,7 @@ const EventCreate = () => {
 
         await eventService.create(event);
 
-        navigate('/events');
+        eventCreate(event);
     };
 
     const changeHandler = e => {

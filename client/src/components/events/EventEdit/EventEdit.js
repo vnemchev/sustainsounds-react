@@ -1,11 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+
+import { EventContext } from '../../../contexts/eventContext';
 
 import * as eventService from '../../../services/eventService';
 
 const EventEdit = () => {
-    const { eventId } = useParams();
     const navigate = useNavigate();
+
+    const { eventId } = useParams();
+
+    const { eventEdit } = useContext(EventContext);
 
     const [event, setEvent] = useState({
         name: '',
@@ -29,7 +34,10 @@ const EventEdit = () => {
 
         eventService
             .edit(eventId, event)
-            .then(res => setEvent(res))
+            .then(res => {
+                setEvent(res);
+                eventEdit(eventId, res);
+            })
             .catch(err => console.log(err));
 
         navigate(`/events/${eventId}`);

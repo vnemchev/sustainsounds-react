@@ -1,12 +1,14 @@
 import { useParams, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 
 import { formatDate } from '../../../utils/util';
+import { EventContext } from '../../../contexts/eventContext';
 import * as eventService from '../../../services/eventService';
 
 const EventDetails = () => {
-    const { eventId } = useParams();
     const navigate = useNavigate();
+    const { eventId } = useParams();
+    const { eventDelete } = useContext(EventContext);
 
     const [event, setEvent] = useState({
         name: '',
@@ -27,6 +29,9 @@ const EventDetails = () => {
 
     const deleteHandler = () => {
         eventService.remove(eventId);
+
+        eventDelete(eventId);
+        
         navigate('/events');
     };
 
