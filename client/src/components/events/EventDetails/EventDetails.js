@@ -31,30 +31,32 @@ const EventDetails = () => {
     };
 
     return (
-        <div>
-            <h1>Event</h1>
-            {
-                <div className="event-details">
-                    <h3>{event.name}</h3>
-                    <h5>
-                        {event.date}, {event.time}, {event.location}
-                    </h5>
-                    <p>{event.price}</p>
-                    <p>{event.description}</p>
-                    <div>
-                        <button
-                            onClick={() =>
-                                navigate(`/events/${event._id}/edit`)
-                            }
-                        >
-                            Edit
-                        </button>
+        <>
+            <div>
+                <h1>Event</h1>
+                {
+                    <div className="event-details">
+                        <h3>{event.name}</h3>
+                        <h5>
+                            {event.date}, {event.time}, {event.location}
+                        </h5>
+                        <p>{event.price}</p>
+                        <p>{event.description}</p>
+                        <div>
+                            <button
+                                onClick={() =>
+                                    navigate(`/events/${event._id}/edit`)
+                                }
+                            >
+                                Edit
+                            </button>
 
-                        <button onClick={deleteHandler}>Delete</button>
+                            <button onClick={deleteHandler}>Delete</button>
+                        </div>
                     </div>
-                </div>
-            }
-        </div>
+                }
+            </div>
+        </>
     );
 };
 
