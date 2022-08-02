@@ -7,7 +7,12 @@ import * as userService from '../../../services/userService';
 
 const Profile = () => {
     const { user } = useContext(AuthContext);
-    const [loadedUser, setLoadedUser] = useState({});
+    const [loadedUser, setLoadedUser] = useState({
+        alias: '',
+        genre: '',
+        bio: '',
+        imageUrl: '',
+    });
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -53,9 +58,7 @@ const Profile = () => {
                 <div>
                     My attended events:
                     {loadedUser.eventsAttended.map(e => (
-                        <div>
-                            <EventCard key={e._id} event={e} />
-                        </div>
+                        <EventCard key={e._id} event={e} />
                     ))}
                 </div>
             )}

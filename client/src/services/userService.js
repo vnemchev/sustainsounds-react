@@ -12,12 +12,12 @@ export const getOneArtistDetailed = async artistId => {
     return api.get(`/users/artists/${artistId}/detailed`);
 };
 
-export const getOneFan = async artistId => {
-    return api.get(`/users/fans/${artistId}`);
+export const getOneFan = async fanId => {
+    return api.get(`/users/fans/${fanId}`);
 };
 
-export const getOneFanDetailed = async artistId => {
-    return api.get(`/users/fans/${artistId}/detailed`);
+export const getOneFanDetailed = async fanId => {
+    return api.get(`/users/fans/${fanId}/detailed`);
 };
 
 export const editArtist = async (artistId, artistData) => {

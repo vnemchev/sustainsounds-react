@@ -6,7 +6,7 @@ exports.getOneFan = fanId => Fan.findById(fanId);
 exports.getOneArtist = artistId => Artist.findById(artistId);
 
 exports.getOneFanDetailed = fanId =>
-    Artist.findById(fanId).populate('eventsAttended');
+    Fan.findById(fanId).populate('eventsAttended');
 
 exports.getOneArtistDetailed = artistId =>
     Artist.findById(artistId)
