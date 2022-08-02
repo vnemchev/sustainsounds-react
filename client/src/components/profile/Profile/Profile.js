@@ -12,12 +12,12 @@ const Profile = () => {
     useEffect(() => {
         if (user.alias) {
             userService
-                .getOneArtist(user._id)
+                .getOneArtistDetailed(user._id)
                 .then(res => setLoadedUser(res))
                 .catch(err => console.log(err));
         } else {
             userService
-                .getOneFan(user._id)
+                .getOneFanDetailed(user._id)
                 .then(res => setLoadedUser(res))
                 .catch(err => console.log(err));
         }
@@ -40,11 +40,21 @@ const Profile = () => {
             {loadedUser.bio && <p>Bio: {loadedUser.bio}</p>}
 
             {loadedUser.eventsCreated && (
-                <p>My events: {loadedUser.eventsCreated}</p>
+                <div>
+                    My created events:
+                    {loadedUser.eventsCreated.map(e => (
+                        <div key={e._id}>{e.name}</div>
+                    ))}
+                </div>
             )}
 
             {loadedUser.eventsAttended && (
-                <p>My events: {loadedUser.eventsAttended}</p>
+                <div>
+                    My attended events:{' '}
+                    {loadedUser.eventsAttended.map(e => (
+                        <div key={e._id}>{e.name}</div>
+                    ))}
+                </div>
             )}
 
             {user.alias && (
