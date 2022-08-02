@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { isAuth } = require('../middlewares/guards');
 const userService = require('../services/userService');
 
 // Get all artists
@@ -24,7 +25,7 @@ router.get('/artists/:artistId', async (req, res) => {
 });
 
 // Edit artist info
-router.put('/artists/:artistId', async (req, res) => {
+router.put('/artists/:artistId', isAuth(), async (req, res) => {
     try {
         const artist = await userService.getOneArtist(req.params.artistId);
 
@@ -73,4 +74,14 @@ router.get('/artists/:artistId/detailed', async (req, res) => {
     }
 });
 
+router.get('/:userId/:eventId', isAuth(), async (req, res) => {
+    try {
+        const result = await userService.attachAttendedEvent(
+            req.params.userId,
+            req.params.eventId,
+        );
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+});
 module.exports = router;

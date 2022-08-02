@@ -23,3 +23,7 @@ export const getOneFanDetailed = async artistId => {
 export const editArtist = async (artistId, artistData) => {
     return api.put(`/users/artists/${artistId}`, artistData);
 };
+
+export const attendEvent = async (userId, eventId) => {
+    return api.get(`/users/${userId}/${eventId}`);
+};

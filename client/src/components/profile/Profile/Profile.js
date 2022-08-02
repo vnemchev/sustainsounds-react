@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import EventCard from '../../events/EventCard/EventCard';
 import { AuthContext } from '../../../contexts/authContext';
 import * as userService from '../../../services/userService';
 
@@ -43,16 +44,18 @@ const Profile = () => {
                 <div>
                     My created events:
                     {loadedUser.eventsCreated.map(e => (
-                        <div key={e._id}>{e.name}</div>
+                        <EventCard key={e._id} event={e} />
                     ))}
                 </div>
             )}
 
             {loadedUser.eventsAttended && (
                 <div>
-                    My attended events:{' '}
+                    My attended events:
                     {loadedUser.eventsAttended.map(e => (
-                        <div key={e._id}>{e.name}</div>
+                        <div>
+                            <EventCard key={e._id} event={e} />
+                        </div>
                     ))}
                 </div>
             )}

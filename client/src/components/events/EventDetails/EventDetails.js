@@ -5,6 +5,7 @@ import { formatDate } from '../../../utils/util';
 import { EventContext } from '../../../contexts/eventContext';
 import { AuthContext } from '../../../contexts/authContext';
 import * as eventService from '../../../services/eventService';
+import * as userService from '../../../services/userService';
 
 const EventDetails = () => {
     const navigate = useNavigate();
@@ -35,6 +36,10 @@ const EventDetails = () => {
         eventDelete(eventId);
 
         navigate('/events');
+    };
+
+    const attendHandler = async () => {
+        await userService.attendEvent(user._id, eventId);
     };
 
     const isOwner = user._id === event._ownerId;
@@ -70,7 +75,7 @@ const EventDetails = () => {
                             </div>
                         )}
 
-                        <button onClick={() => {}}>Attend</button>
+                        <button onClick={attendHandler}>Attend</button>
                     </div>
                 }
             </div>

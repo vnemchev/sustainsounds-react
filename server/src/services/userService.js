@@ -34,18 +34,11 @@ exports.attachCreatedEventToArtist = async (eventId, artistId) => {
     await artist.save();
 };
 
-exports.attachAttendedEventToArtist = async (eventId, artistId) => {
-    const artist = await Artist.findById(artistId);
+exports.attachAttendedEvent = async (userId, eventId) => {
+    const user =
+        (await Artist.findById(userId)) || (await Fan.findById(userId));
 
-    artist.eventsAttended.push(eventId);
+    user.eventsAttended.push(eventId);
 
-    await artist.save();
-};
-
-exports.attachAttendedEventToFan = async (eventId, fanId) => {
-    const fan = await Fan.findById(fanId);
-
-    fan.eventsAttended.push(eventId);
-
-    await fan.save();
+    await user.save();
 };
