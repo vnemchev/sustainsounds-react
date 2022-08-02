@@ -38,6 +38,7 @@ const ProfileEdit = () => {
             .editArtist(user._id, loadedUser)
             .then(res => {
                 aliasUpdate(res.alias);
+                localStorage.setItem('user', JSON.stringify(res));
                 navigate('/profile');
             })
             .catch(err => console.log(err));
