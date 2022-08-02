@@ -40,7 +40,7 @@ router.post('/', isAuth(), async (req, res) => {
 
         const result = await eventService.create(data);
 
-        await userService.attachEventToArtist(result._id, req.user._id);
+        await userService.attachCreatedEventToArtist(result._id, req.user._id);
 
         res.status(201).json(result);
     } catch (error) {
@@ -77,7 +77,7 @@ router.delete(
             res.status(204).json(result);
         } catch (error) {
             res.status(404).json({
-                message: `Event $${req.params.eventId} not found!`,
+                message: `Event ${req.params.eventId} not found!`,
             });
         }
     },

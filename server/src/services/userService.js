@@ -5,6 +5,14 @@ exports.getOneFan = fanId => Fan.findById(fanId);
 
 exports.getOneArtist = artistId => Artist.findById(artistId);
 
+exports.getOneFanDetailed = fanId =>
+    Artist.findById(fanId).populate('eventsAttended');
+
+exports.getOneArtistDetailed = artistId =>
+    Artist.findById(artistId)
+        .populate('eventsAttended')
+        .populate('eventsCreated');
+
 exports.getAllArtists = () => Artist.find({});
 
 exports.editArtist = async (existing, artist) => {
@@ -18,7 +26,7 @@ exports.editArtist = async (existing, artist) => {
     return existing;
 };
 
-exports.attachEventToArtist = async (eventId, artistId) => {
+exports.attachCreatedEventToArtist = async (eventId, artistId) => {
     const artist = await Artist.findById(artistId);
 
     artist.eventsCreated.push(eventId);
@@ -26,7 +34,15 @@ exports.attachEventToArtist = async (eventId, artistId) => {
     await artist.save();
 };
 
-exports.attachEventToFan = async (eventId, fanId) => {
+exports.attachAttendedEventToArtist = async (eventId, artistId) => {
+    const artist = await Artist.findById(artistId);
+
+    artist.eventsAttended.push(eventId);
+
+    await artist.save();
+};
+
+exports.attachAttendedEventToFan = async (eventId, fanId) => {
     const fan = await Fan.findById(fanId);
 
     fan.eventsAttended.push(eventId);

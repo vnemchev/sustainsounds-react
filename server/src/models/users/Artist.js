@@ -16,6 +16,12 @@ const artistSchema = new mongoose.Schema({
     genre: { type: String },
     bio: { type: String },
     imageUrl: { type: String },
+    eventsAttended: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'Event',
+        },
+    ],
     eventsCreated: [
         {
             type: mongoose.Types.ObjectId,

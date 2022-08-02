@@ -49,7 +49,18 @@ exports.edit = async (existing, event) => {
     return existing;
 };
 
-exports.remove = async eventId => Event.findByIdAndDelete(eventId);
+exports.remove = async eventId => {
+    const event = await Event.findById(eventId);
+    const ownerId = event._ownerId;
+    const artist = await Artist.findById(ownerId);
+
+    const index = artist.eventsCreated.indexOf(event._id);
+
+    artist.eventsCreated.splice(index, 1);
+
+    await Event.findByIdAndDelete(eventId);
+    await artist.save();
+};
 
 const checkIfExistingEvent = async name => {
     const settings = { name: new RegExp(`^${name}$`, 'i') };
@@ -58,4 +69,3 @@ const checkIfExistingEvent = async name => {
 
     return event;
 };
-

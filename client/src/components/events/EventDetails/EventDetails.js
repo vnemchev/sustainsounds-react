@@ -3,12 +3,14 @@ import { useEffect, useState, useContext } from 'react';
 
 import { formatDate } from '../../../utils/util';
 import { EventContext } from '../../../contexts/eventContext';
+import { AuthContext } from '../../../contexts/authContext';
 import * as eventService from '../../../services/eventService';
 
 const EventDetails = () => {
     const navigate = useNavigate();
     const { eventId } = useParams();
     const { eventDelete } = useContext(EventContext);
+    const { user } = useContext(AuthContext);
 
     const [event, setEvent] = useState({
         name: '',
@@ -31,9 +33,13 @@ const EventDetails = () => {
         eventService.remove(eventId);
 
         eventDelete(eventId);
-        
+
         navigate('/events');
     };
+
+    const isOwner = user._id === event._ownerId;
+
+    console.log(isOwner);
 
     return (
         <>
@@ -42,22 +48,29 @@ const EventDetails = () => {
                 {
                     <div className="event-details">
                         <h3>{event.name}</h3>
+
+                        <h4>{event.location}</h4>
                         <h5>
-                            {event.date}, {event.time}, {event.location}
+                            {formatDate(event.date, 'display')}, {event.time}
                         </h5>
                         <p>{event.price}</p>
                         <p>{event.description}</p>
-                        <div>
-                            <button
-                                onClick={() =>
-                                    navigate(`/events/${event._id}/edit`)
-                                }
-                            >
-                                Edit
-                            </button>
 
-                            <button onClick={deleteHandler}>Delete</button>
-                        </div>
+                        {isOwner && (
+                            <div>
+                                <button
+                                    onClick={() =>
+                                        navigate(`/events/${event._id}/edit`)
+                                    }
+                                >
+                                    Edit
+                                </button>
+
+                                <button onClick={deleteHandler}>Delete</button>
+                            </div>
+                        )}
+
+                        <button onClick={() => {}}>Attend</button>
                     </div>
                 }
             </div>
