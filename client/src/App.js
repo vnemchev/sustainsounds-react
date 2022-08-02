@@ -15,22 +15,12 @@ import EventDetails from './components/events/EventDetails/EventDetails';
 import EventCreate from './components/events/EventCreate/EventCreate';
 import EventEdit from './components/events/EventEdit/EventEdit';
 import ArtistList from './components/artists/ArtistList/ArtistList';
+import ArtistDetails from './components/artists/ArtistDetails/ArtistDetails';
 import Profile from './components/profile/Profile/Profile';
 import ProfileEdit from './components/profile/ProfileEdit/ProfileEdit';
 import About from './components/About/About';
 
-import * as eventService from './services/eventService';
-
 const App = () => {
-    // const [events, setEvents] = useState([]);
-
-    // useEffect(() => {
-    //     eventService
-    //         .getAll()
-    //         .then(res => setEvents(res))
-    //         .catch(err => alert(err.message));
-    // }, []);
-
     return (
         <>
             <AuthProvider>
@@ -73,6 +63,11 @@ const App = () => {
                             <Route
                                 path="/artists"
                                 element={<ArtistList />}
+                            ></Route>
+
+                            <Route
+                                path="/artists/:artistId"
+                                element={<ArtistDetails />}
                             ></Route>
 
                             <Route

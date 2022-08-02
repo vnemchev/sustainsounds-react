@@ -1,9 +1,16 @@
+import { useNavigate } from 'react-router-dom';
+
 const ArtistCard = ({ artist }) => {
+    const navigate = useNavigate();
     return (
         <div>
             <div className="card">
                 <h3>{artist.alias}</h3>
-                <h5>{artist.genre}</h5>
+            </div>
+            <div>
+                <button onClick={() => navigate(`/artists/${artist._id}`)}>
+                    Details
+                </button>
             </div>
         </div>
     );
