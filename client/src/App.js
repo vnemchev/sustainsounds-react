@@ -20,6 +20,7 @@ import ArtistDetails from './components/artists/ArtistDetails/ArtistDetails';
 import Profile from './components/profile/Profile/Profile';
 import ProfileEdit from './components/profile/ProfileEdit/ProfileEdit';
 import About from './components/About/About';
+import Error404 from './components/common/404/404';
 
 const App = () => {
     return (
@@ -30,6 +31,7 @@ const App = () => {
 
                     <main className="main-container">
                         <Routes>
+                            <Route path="/404" element={<Error404 />}></Route>
                             <Route path="/login" element={<Login />}></Route>
 
                             <Route
