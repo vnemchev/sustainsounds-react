@@ -38,7 +38,11 @@ exports.attachAttendedEvent = async (userId, eventId) => {
     const user =
         (await Artist.findById(userId)) || (await Fan.findById(userId));
 
-    user.eventsAttended.push(eventId);
+    if (!user.eventsAttended.includes(eventId)) {
+        user.eventsAttended.push(eventId);
 
-    await user.save();
+        await user.save();
+    } else {
+        throw new Error('Can not attend same event twice!');
+    }
 };

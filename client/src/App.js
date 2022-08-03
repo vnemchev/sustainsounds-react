@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { AuthProvider } from './contexts/authContext';
 import { EventProvider } from './contexts/eventContext';
 
+import PrivateRoute from './components/common/PrivateRoute';
 import Header from './components/common/Header/Header';
 import Footer from './components/common/Footer/Footer';
 import Register from './components/auth/Register';
@@ -31,7 +32,14 @@ const App = () => {
                         <Routes>
                             <Route path="/login" element={<Login />}></Route>
 
-                            <Route path="/logout" element={<Logout />}></Route>
+                            <Route
+                                path="/logout"
+                                element={
+                                    <PrivateRoute>
+                                        <Logout />
+                                    </PrivateRoute>
+                                }
+                            ></Route>
 
                             <Route
                                 path="/register"
@@ -52,12 +60,20 @@ const App = () => {
 
                             <Route
                                 path="/create"
-                                element={<EventCreate />}
+                                element={
+                                    <PrivateRoute>
+                                        <EventCreate />
+                                    </PrivateRoute>
+                                }
                             ></Route>
 
                             <Route
                                 path="/events/:eventId/edit"
-                                element={<EventEdit />}
+                                element={
+                                    <PrivateRoute>
+                                        <EventEdit />
+                                    </PrivateRoute>
+                                }
                             ></Route>
 
                             <Route
@@ -77,7 +93,11 @@ const App = () => {
 
                             <Route
                                 path="/profile/edit"
-                                element={<ProfileEdit />}
+                                element={
+                                    <PrivateRoute>
+                                        <ProfileEdit />
+                                    </PrivateRoute>
+                                }
                             ></Route>
 
                             <Route path="/about" element={<About />}></Route>

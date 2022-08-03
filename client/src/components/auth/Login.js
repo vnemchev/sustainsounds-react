@@ -19,10 +19,14 @@ const Login = () => {
         authService
             .login(loginData)
             .then(res => {
-                userLogin(res);
-                navigate('/');
+                if (res.message) {
+                    console.log(res);
+                } else {
+                    userLogin(res);
+                    navigate('/');
+                }
             })
-            .catch(err => console.log(err));
+            .catch(err => alert(err));
     };
 
     const changeHandler = e => {

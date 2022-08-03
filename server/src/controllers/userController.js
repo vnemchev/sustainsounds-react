@@ -74,14 +74,16 @@ router.get('/artists/:artistId/detailed', async (req, res) => {
     }
 });
 
+// Attend event
 router.get('/:userId/:eventId', isAuth(), async (req, res) => {
     try {
-        const result = await userService.attachAttendedEvent(
+        await userService.attachAttendedEvent(
             req.params.userId,
             req.params.eventId,
         );
+        res.status(204).end();
     } catch (error) {
-        res.status(400).json({ message: error.message });
+        res.status(404).json({ message: error.message });
     }
 });
 module.exports = router;
