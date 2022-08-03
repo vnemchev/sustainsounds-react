@@ -67,6 +67,7 @@ const createSession = user => {
     const result = {
         _id: user._id,
         email: user.email,
+        eventsAttended: user.eventsAttended,
         accessToken,
     };
 

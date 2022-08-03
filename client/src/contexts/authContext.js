@@ -1,14 +1,21 @@
 import { useState, useEffect } from 'react';
 import { createContext } from 'react';
 
+import * as userService from '../services/userService';
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [auth, setAuth] = useState({});
-    const [eventsAttended, setEventsAttended] = useState([]);
+    const [auth, setAuth] = useState({
+        _id: '',
+        email: '',
+        accessToken: '',
+        alias: '',
+        eventsAttended: [],
+    });
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('user'));
+        const user = JSON.parse(localStorage.getItem('user')) || {};
         setAuth(user);
     }, []);
 
@@ -20,6 +27,7 @@ export const AuthProvider = ({ children }) => {
             email: authData.email,
             accessToken: authData.accessToken,
             alias: authData.alias,
+            eventsAttended: authData.eventsAttended,
         }));
     };
 
@@ -33,14 +41,17 @@ export const AuthProvider = ({ children }) => {
     };
 
     const attendEvent = eventId => {
-        setEventsAttended(state => [...state, eventId]);
+        setAuth(state => {
+            const events = [...state.eventsAttended, eventId];
+
+            return { ...state, eventsAttended: events };
+        });
     };
 
     return (
         <AuthContext.Provider
             value={{
                 user: auth,
-                eventsAttended,
                 userLogin,
                 userLogout,
                 aliasUpdate,

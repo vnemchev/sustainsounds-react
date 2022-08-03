@@ -11,7 +11,7 @@ const EventDetails = () => {
     const navigate = useNavigate();
     const { eventId } = useParams();
     const { eventDelete } = useContext(EventContext);
-    const { user, eventsAttended, attendEvent } = useContext(AuthContext);
+    const { user, attendEvent } = useContext(AuthContext);
 
     const [event, setEvent] = useState({
         name: '',
@@ -31,7 +31,7 @@ const EventDetails = () => {
     }, []);
 
     const attendHandler = async () => {
-        if (!eventsAttended.includes(eventId)) {
+        if (!user.eventsAttended.includes(eventId)) {
             await userService.attendEvent(user._id, eventId);
 
             attendEvent(eventId);
@@ -80,7 +80,7 @@ const EventDetails = () => {
                                 <button onClick={deleteHandler}>Delete</button>
                             </div>
                         )}
-                        {user && !eventsAttended.includes(eventId) && (
+                        {user && !user.eventsAttended.includes(eventId) && (
                             <button onClick={attendHandler}>Attend</button>
                         )}
                     </div>
