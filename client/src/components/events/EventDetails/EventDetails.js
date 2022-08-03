@@ -30,14 +30,6 @@ const EventDetails = () => {
             .catch(err => console.log(err));
     }, []);
 
-    const deleteHandler = () => {
-        eventService.remove(eventId);
-
-        eventDelete(eventId);
-
-        navigate('/events');
-    };
-
     const attendHandler = async () => {
         await userService.attendEvent(user._id, eventId);
     };
@@ -45,6 +37,16 @@ const EventDetails = () => {
     const isOwner = user._id === event._ownerId;
 
     console.log(isOwner);
+
+    const deleteHandler = () => {
+        if (isOwner) {
+            eventService.remove(eventId);
+
+            eventDelete(eventId);
+
+            navigate('/events');
+        }
+    };
 
     return (
         <>

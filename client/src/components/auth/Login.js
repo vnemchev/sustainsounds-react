@@ -19,11 +19,12 @@ const Login = () => {
         authService
             .login(loginData)
             .then(res => {
-                if (res.message) {
+                try {
                     console.log(res);
-                } else {
                     userLogin(res);
                     navigate('/');
+                } catch (error) {
+                    console.log(error.message);
                 }
             })
             .catch(err => alert(err));
