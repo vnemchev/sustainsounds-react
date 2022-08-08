@@ -1,8 +1,9 @@
 import Nav from '../Nav/Nav';
+import styles from '../Header/Header.module.css';
 
 const Header = () => {
     return (
-        <header id="header">
+        <header id="header" className={styles.header}>
             <Nav />
         </header>
     );

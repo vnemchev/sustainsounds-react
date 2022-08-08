@@ -1,0 +1,33 @@
+.nav {
+    font-family: 'Doctor Glitch', 'Fredoka One', 'Courier New', Courier,
+        monospace;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.hometext {
+    text-decoration: none;
+    font-size: large;
+    letter-spacing: 4px;
+    color: black;
+}
+
+.navlink {
+    color: black;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    width: 20px;
+    min-width: max-content;
+}
+
+.navlink:hover,
+.navlink:active,
+.navlink:focus,
+.hometext:hover,
+.hometext:active,
+.hometext:focus {
+    color: #ffda99;
+}
