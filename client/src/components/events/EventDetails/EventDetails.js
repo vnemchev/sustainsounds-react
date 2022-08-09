@@ -39,8 +39,13 @@ const EventDetails = () => {
     };
 
     const isOwner = user._id === event._ownerId;
+    const existsUser = Object.keys(user).length !== 0;
 
-    console.log(isOwner);
+    let hasAttended = user?.eventsAttended?.includes(eventId);
+
+    if (hasAttended !== true) {
+        hasAttended = false;
+    }
 
     const deleteHandler = () => {
         if (isOwner) {
@@ -51,6 +56,8 @@ const EventDetails = () => {
             navigate('/events');
         }
     };
+
+    console.log(user);
 
     return (
         <>
@@ -80,8 +87,16 @@ const EventDetails = () => {
                                 <button onClick={deleteHandler}>Delete</button>
                             </div>
                         )}
-                        {user && !user.eventsAttended.includes(eventId) && (
-                            <button onClick={attendHandler}>Attend</button>
+                        {existsUser ? (
+                            <>
+                                {!hasAttended && !isOwner && (
+                                    <button onClick={attendHandler}>
+                                        Attend
+                                    </button>
+                                )}
+                            </>
+                        ) : (
+                            <></>
                         )}
                     </div>
                 }
