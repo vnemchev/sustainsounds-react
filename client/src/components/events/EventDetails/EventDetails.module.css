@@ -1,0 +1,17 @@
+.wrapper {
+    width: auto;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+}
+
+.eventContainer {
+    margin-top: 30px;
+    background-color: #4b8a80;
+    font-family: 'Doctor Glitch', 'Courier New', Courier, monospace;
+    height: 760px;
+    width: 600px;
+    border-radius: 5px;
+}

@@ -1,6 +1,5 @@
 .nav {
-    font-family: 'Doctor Glitch', 'Fredoka One', 'Courier New', Courier,
-        monospace;
+    font-family: 'Doctor Glitch', 'Courier New', Courier, monospace;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -28,5 +27,5 @@
 .hometext:hover,
 .hometext:active {
     color: #ffda99;
-    text-shadow: black 3px 3px;
+    text-shadow: black 2px 3px;
 }

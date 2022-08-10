@@ -24,6 +24,10 @@ const Nav = () => {
                 Artists
             </Link>
 
+            <Link to="/about" className={styles.navlink}>
+                About
+            </Link>
+            
             {user.email ? (
                 <>
                     {isArtist && (
@@ -51,10 +55,6 @@ const Nav = () => {
                     </Link>
                 </>
             )}
-
-            <Link to="/about" className={styles.navlink}>
-                About
-            </Link>
         </nav>
     );
 };

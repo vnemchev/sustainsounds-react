@@ -7,6 +7,8 @@ import { AuthContext } from '../../../contexts/authContext';
 import * as eventService from '../../../services/eventService';
 import * as userService from '../../../services/userService';
 
+import styles from './EventDetails.module.css';
+
 const EventDetails = () => {
     const navigate = useNavigate();
     const { eventId } = useParams();
@@ -59,48 +61,41 @@ const EventDetails = () => {
     console.log(user);
 
     return (
-        <>
-            <div>
-                <h1>Event</h1>
-                {
-                    <div className="event-details">
-                        <h3>{event.name}</h3>
+        <div className={styles.wrapper}>
+            <div className={styles.eventContainer}>
+                <h1>{event.name}</h1>
+                <img src={event.imageUrl} alt={event.name}></img>
+                <h4>{event.location}</h4>
+                <h5>
+                    {formatDate(event.date, 'display')}, {event.time}
+                </h5>
+                <p>{event.price}</p>
+                <p>{event.description}</p>
 
-                        <h4>{event.location}</h4>
-                        <h5>
-                            {formatDate(event.date, 'display')}, {event.time}
-                        </h5>
-                        <p>{event.price}</p>
-                        <p>{event.description}</p>
+                {isOwner && (
+                    <div>
+                        <button
+                            onClick={() =>
+                                navigate(`/events/${event._id}/edit`)
+                            }
+                        >
+                            Edit
+                        </button>
 
-                        {isOwner && (
-                            <div>
-                                <button
-                                    onClick={() =>
-                                        navigate(`/events/${event._id}/edit`)
-                                    }
-                                >
-                                    Edit
-                                </button>
-
-                                <button onClick={deleteHandler}>Delete</button>
-                            </div>
-                        )}
-                        {user.email ? (
-                            <>
-                                {!hasAttended && !isOwner && (
-                                    <button onClick={attendHandler}>
-                                        Attend
-                                    </button>
-                                )}
-                            </>
-                        ) : (
-                            <></>
-                        )}
+                        <button onClick={deleteHandler}>Delete</button>
                     </div>
-                }
+                )}
+                {user.email ? (
+                    <>
+                        {!hasAttended && !isOwner && (
+                            <button onClick={attendHandler}>Attend</button>
+                        )}
+                    </>
+                ) : (
+                    <></>
+                )}
             </div>
-        </>
+        </div>
     );
 };
 

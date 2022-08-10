@@ -1,0 +1,35 @@
+.card {
+    font-family: 'Doctor Glitch', 'Courier New', Courier, monospace;
+    width: auto;
+    background-color: #b7c488;
+    color: #2f4858;
+    margin: 5px 5px;
+    padding: 5px 5px;
+    border-radius: 4px;
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.card:hover {
+    background-color: #ffda99;
+    text-shadow: #2f4858 2px 3px;
+    color: #4b8a80;
+}
+
+.eventName {
+    font-size: 40px;
+    margin-left: 35px;
+    letter-spacing: 2px;
+}
+
+.dateLocation {
+    width: 460px;
+    font-size: 25px;
+    margin-right: 35px;
+    font-family: 'Retroica', 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: space-between;
+}

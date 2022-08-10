@@ -114,6 +114,17 @@ const EventEdit = () => {
                 </div>
 
                 <div>
+                    <label htmlFor="event-imageUrl">image: </label>
+                    <input
+                        type="text"
+                        id="event-imageUrl"
+                        name="imageUrl"
+                        value={event.imageUrl}
+                        onChange={changeHandler}
+                    ></input>
+                </div>
+
+                <div>
                     <label htmlFor="event-description">description: </label>
                     <textarea
                         id="event-description"
