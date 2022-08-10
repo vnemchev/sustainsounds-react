@@ -58,13 +58,11 @@ const EventDetails = () => {
         hasAttended = false;
     }
 
-    console.log(user);
-
     return (
         <div className={styles.wrapper}>
             <div className={styles.eventContainer}>
                 <div className={styles.infoContainer}>
-                    <h1>{event.name}</h1>
+                    <h1 className={styles.eventName}>{event.name}</h1>
                     <img src={event.imageUrl} alt={event.name}></img>
                     <h2>{event.location}</h2>
                     <h3>
