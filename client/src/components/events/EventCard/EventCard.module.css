@@ -11,6 +11,7 @@
     justify-content: space-between;
     align-items: center;
     padding-top: 10px;
+    letter-spacing: 2px;
 }
 
 .card:hover {
@@ -22,14 +23,12 @@
 .eventName {
     font-size: 40px;
     margin-left: 35px;
-    letter-spacing: 2px;
 }
 
 .dateLocation {
     width: 460px;
-    font-size: 25px;
+    font-size: 20px;
     margin-right: 35px;
-    font-family: 'Retroica', 'Courier New', Courier, monospace;
     display: flex;
     justify-content: space-between;
 }

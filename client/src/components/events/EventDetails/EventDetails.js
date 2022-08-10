@@ -63,37 +63,39 @@ const EventDetails = () => {
     return (
         <div className={styles.wrapper}>
             <div className={styles.eventContainer}>
-                <h1>{event.name}</h1>
-                <img src={event.imageUrl} alt={event.name}></img>
-                <h4>{event.location}</h4>
-                <h5>
-                    {formatDate(event.date, 'display')}, {event.time}
-                </h5>
-                <p>{event.price}</p>
-                <p>{event.description}</p>
+                <div className={styles.infoContainer}>
+                    <h1>{event.name}</h1>
+                    <img src={event.imageUrl} alt={event.name}></img>
+                    <h2>{event.location}</h2>
+                    <h3>
+                        {formatDate(event.date, 'display')}, {event.time}
+                    </h3>
+                    <h3>&euro;{event.price}</h3>
+                    <p className={styles.description}>{event.description}</p>
 
-                {isOwner && (
-                    <div>
-                        <button
-                            onClick={() =>
-                                navigate(`/events/${event._id}/edit`)
-                            }
-                        >
-                            Edit
-                        </button>
+                    {isOwner && (
+                        <div>
+                            <button
+                                onClick={() =>
+                                    navigate(`/events/${event._id}/edit`)
+                                }
+                            >
+                                Edit
+                            </button>
 
-                        <button onClick={deleteHandler}>Delete</button>
-                    </div>
-                )}
-                {user.email ? (
-                    <>
-                        {!hasAttended && !isOwner && (
-                            <button onClick={attendHandler}>Attend</button>
-                        )}
-                    </>
-                ) : (
-                    <></>
-                )}
+                            <button onClick={deleteHandler}>Delete</button>
+                        </div>
+                    )}
+                    {user.email ? (
+                        <>
+                            {!hasAttended && !isOwner && (
+                                <button onClick={attendHandler}>Attend</button>
+                            )}
+                        </>
+                    ) : (
+                        <></>
+                    )}
+                </div>
             </div>
         </div>
     );
