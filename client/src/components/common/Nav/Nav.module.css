@@ -25,9 +25,8 @@
 
 .navlink:hover,
 .navlink:active,
-.navlink:focus,
 .hometext:hover,
-.hometext:active,
-.hometext:focus {
+.hometext:active {
     color: #ffda99;
+    text-shadow: black 3px 3px;
 }

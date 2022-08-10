@@ -38,15 +38,6 @@ const EventDetails = () => {
         }
     };
 
-    const isOwner = user._id === event._ownerId;
-    const existsUser = Object.keys(user).length !== 0;
-
-    let hasAttended = user?.eventsAttended?.includes(eventId);
-
-    if (hasAttended !== true) {
-        hasAttended = false;
-    }
-
     const deleteHandler = () => {
         if (isOwner) {
             eventService.remove(eventId);
@@ -56,6 +47,14 @@ const EventDetails = () => {
             navigate('/events');
         }
     };
+
+    const isOwner = user._id === event._ownerId;
+
+    let hasAttended = user?.eventsAttended?.includes(eventId);
+
+    if (hasAttended !== true) {
+        hasAttended = false;
+    }
 
     console.log(user);
 
@@ -87,7 +86,7 @@ const EventDetails = () => {
                                 <button onClick={deleteHandler}>Delete</button>
                             </div>
                         )}
-                        {existsUser ? (
+                        {user.email ? (
                             <>
                                 {!hasAttended && !isOwner && (
                                     <button onClick={attendHandler}>

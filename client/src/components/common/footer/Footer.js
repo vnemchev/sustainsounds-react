@@ -1,5 +1,7 @@
+import styles from './Footer.module.css';
+
 const Footer = () => {
-    return <p>Copyright 2022</p>;
+    return <footer>Copyright 2022</footer>;
 };
 
 export default Footer;

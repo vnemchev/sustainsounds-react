@@ -1,19 +1,23 @@
 import { useNavigate } from 'react-router-dom';
 import { formatDate } from '../../../utils/util';
 
+import styles from './EventCard.module.css';
+
 const EventCard = ({ event }) => {
     const navigate = useNavigate();
 
     return (
-        <div>
-            <div className="card">
-                <h3>{event.name}</h3>
-                <h5>
-                    {formatDate(event.date, 'display')}, {event.location}
-                </h5>
-                <button onClick={() => navigate(`/events/${event._id}`)}>
-                    Lemme see more!
-                </button>
+        <div
+            className={styles.card}
+            onClick={() => navigate(`/events/${event._id}`)}
+        >
+            <div>
+                <h2 className={styles.eventName}>{event.name}</h2>
+            </div>
+
+            <div className={styles.dateLocation}>
+                <h3>{event.location}</h3>
+                <h3>{formatDate(event.date, 'display')}</h3>
             </div>
         </div>
     );

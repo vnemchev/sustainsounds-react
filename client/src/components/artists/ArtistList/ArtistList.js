@@ -13,13 +13,13 @@ const ArtistList = () => {
     }, []);
 
     return (
-        <div>
+        <>
             {artists.length > 0 ? (
                 artists?.map(x => <ArtistCard key={x._id} artist={x} />)
             ) : (
                 <h2>No artists yet...</h2>
             )}
-        </div>
+        </>
     );
 };
 

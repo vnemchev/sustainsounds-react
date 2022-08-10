@@ -15,13 +15,13 @@ const EventList = () => {
     }, []);
 
     return (
-        <div className="list-container">
+        <>
             {events.length > 0 ? (
                 events.map(e => <EventCard event={e} key={e._id} />)
             ) : (
                 <h2>No events yet...</h2>
             )}
-        </div>
+        </>
     );
 };
 

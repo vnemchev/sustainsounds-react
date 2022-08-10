@@ -21,6 +21,8 @@ import ProfileEdit from './components/profile/ProfileEdit/ProfileEdit';
 import About from './components/About/About';
 import Error404 from './components/common/404/404';
 
+import styles from './App.module.css';
+
 const App = () => {
     return (
         <>
@@ -28,7 +30,7 @@ const App = () => {
                 <EventProvider>
                     <Header />
 
-                    <main className="main-container">
+                    <main>
                         <Routes>
                             <Route path="/404" element={<Error404 />}></Route>
                             <Route path="/login" element={<Login />}></Route>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/authContext';
 import { getUsername } from '../../../utils/util';
 
-import styles from '../Nav/Nav.module.css';
+import styles from './Nav.module.css';
 
 const Nav = () => {
     const { user } = useContext(AuthContext);
@@ -14,9 +14,6 @@ const Nav = () => {
         <nav className={styles.nav}>
             <Link to="/" className={styles.hometext}>
                 <h1>SUSTAINSOUNDS</h1>
-            </Link>
-            <Link to="/about" className={styles.navlink}>
-                About
             </Link>
 
             <Link to="/events" className={styles.navlink}>
@@ -29,23 +26,19 @@ const Nav = () => {
 
             {user.email ? (
                 <>
-                    <Link to="/profile" className={styles.navlink}>
-                        Profile
-                    </Link>
-
-                    <Link to="/logout" className={styles.navlink}>
-                        Logout
-                    </Link>
-
                     {isArtist && (
                         <Link to="/create" className={styles.navlink}>
                             Create
                         </Link>
                     )}
 
-                    <span>
+                    <Link to="/profile" className={styles.navlink}>
                         Welcome, {user.alias || getUsername(user.email)}!
-                    </span>
+                    </Link>
+
+                    <Link to="/logout" className={styles.navlink}>
+                        Logout
+                    </Link>
                 </>
             ) : (
                 <>
@@ -58,6 +51,10 @@ const Nav = () => {
                     </Link>
                 </>
             )}
+
+            <Link to="/about" className={styles.navlink}>
+                About
+            </Link>
         </nav>
     );
 };
