@@ -19,10 +19,13 @@ const EventCreate = () => {
         description: '',
     });
 
-    const submitHandler = async e => {
+    const submitHandler = e => {
         e.preventDefault();
 
-        await eventService.create(event);
+        eventService
+            .create(event)
+            .then(res => res.json())
+            .then(event => eventCreate(event));
 
         eventCreate(event);
     };

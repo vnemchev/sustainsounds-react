@@ -1,18 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styles from '../EventList/EventList.css';
 import * as eventService from '../../../services/eventService';
 
 import EventCard from '../EventCard/EventCard';
+import { EventContext } from '../../../contexts/eventContext';
 
 const EventList = () => {
-    const [events, setEvents] = useState([]);
+    // const [events, setEvents] = useState([]);
+    const { events } = useContext(EventContext);
 
-    useEffect(() => {
-        eventService
-            .getAll()
-            .then(res => setEvents(res))
-            .catch(err => alert(err.message));
-    }, []);
+    // useEffect(() => {
+    //     eventService
+    //         .getAll()
+    //         .then(res => setEvents(res))
+    //         .catch(err => alert(err.message));
+    // }, []);
 
     return (
         <>
