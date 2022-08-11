@@ -9,10 +9,10 @@ const Logout = () => {
     const navigate = useNavigate();
 
     const { user, userLogout } = useContext(AuthContext);
-    console.log(user);
+
     useEffect(() => {
         authService
-            .logout(user.accessToken)
+            .logout()
             .then(() => {
                 userLogout();
                 localStorage.clear();

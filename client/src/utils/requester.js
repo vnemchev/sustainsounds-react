@@ -27,10 +27,11 @@ const request = async (method, endpoint, data) => {
             } else {
                 return response.json();
             }
+        } else {
+            throw new Error();
         }
     } catch (error) {
-        alert(error.message);
-        throw error;
+        throw new Error();
     }
 };
 

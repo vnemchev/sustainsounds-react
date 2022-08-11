@@ -23,11 +23,11 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem('user', JSON.stringify(authData));
 
         setAuth(() => ({
-            _id: authData._id,
-            email: authData.email,
-            accessToken: authData.accessToken,
-            alias: authData.alias,
-            eventsAttended: authData.eventsAttended,
+            _id: authData?._id,
+            email: authData?.email,
+            accessToken: authData?.accessToken,
+            alias: authData?.alias,
+            eventsAttended: authData?.eventsAttended,
         }));
     };
 

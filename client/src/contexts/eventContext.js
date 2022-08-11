@@ -22,7 +22,7 @@ export const EventProvider = ({ children }) => {
     };
 
     const eventEdit = (eventId, event) => {
-        setEvents(state => state.map(e => (e._id == eventId ? event : e)));
+        setEvents(state => state.map(e => (e._id === eventId ? event : e)));
     };
 
     const eventDelete = eventId => {

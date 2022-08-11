@@ -50,8 +50,7 @@ const EventDetails = () => {
         }
     };
 
-    const isOwner = user._id === event._ownerId;
-
+    let isOwner = user._id === event._ownerId;
     let hasAttended = user?.eventsAttended?.includes(eventId);
 
     if (hasAttended !== true) {
