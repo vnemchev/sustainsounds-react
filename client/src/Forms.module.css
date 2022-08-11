@@ -33,6 +33,10 @@ form input {
     letter-spacing: 3px;
 }
 
+.editHeading {
+    font-size: 62px;
+}
+
 .myFormGroup {
     font-family: 'Oxygen', 'Courier New', Courier, monospace;
     font-weight: 600;

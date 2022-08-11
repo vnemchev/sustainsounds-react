@@ -38,12 +38,15 @@ const ProfileEdit = () => {
             .editArtist(user._id, loadedUser)
             .then(res => {
                 aliasUpdate(res.alias);
+                console.log(res);
                 localStorage.setItem(
                     'user',
                     JSON.stringify({
                         alias: res.alias,
                         email: user.email,
                         accessToken: user.accessToken,
+                        _id: user._id,
+                        eventsAttended: user.eventsAttended,
                     }),
                 );
                 navigate('/profile');

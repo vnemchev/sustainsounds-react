@@ -2,17 +2,11 @@ import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import EventCard from '../../events/EventCard/EventCard';
-import { AuthContext } from '../../../contexts/authContext';
 import * as userService from '../../../services/userService';
 
 const Profile = () => {
-    const { user } = useContext(AuthContext);
-    const [loadedUser, setLoadedUser] = useState({
-        alias: '',
-        genre: '',
-        bio: '',
-        imageUrl: '',
-    });
+    const user = JSON.parse(localStorage.getItem('user'));
+    const [loadedUser, setLoadedUser] = useState({});
     const navigate = useNavigate();
 
     useEffect(() => {

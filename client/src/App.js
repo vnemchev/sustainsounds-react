@@ -5,7 +5,6 @@ import { EventProvider } from './contexts/eventContext';
 
 import PrivateRoute from './components/common/PrivateRoute';
 import Header from './components/common/Header/Header';
-import Footer from './components/common/Footer/Footer';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Logout from './components/auth/Logout';
@@ -106,8 +105,6 @@ const App = () => {
                             <Route path="/about" element={<About />}></Route>
                         </Routes>
                     </main>
-
-                    <Footer />
                 </EventProvider>
             </AuthProvider>
         </>
