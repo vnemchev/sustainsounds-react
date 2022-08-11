@@ -21,10 +21,10 @@ const EventCreate = () => {
 
         eventService
             .create(event)
-            .then(res => res.json())
-            .then(event => eventCreate(event));
-
-        eventCreate(event);
+            .then(res => {
+                eventCreate(res);
+            })
+            .catch(err => console.log(err));
     };
 
     const changeHandler = e => {

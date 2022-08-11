@@ -70,28 +70,41 @@ const EventDetails = () => {
                     <h3>&euro;{event.price}</h3>
                     <p className={styles.description}>{event.description}</p>
 
-                    {isOwner && (
-                        <div>
-                            <button
-                                onClick={() =>
-                                    navigate(`/events/${event._id}/edit`)
-                                }
-                            >
-                                Edit
-                            </button>
+                    <div className={styles.buttons}>
+                        {isOwner && (
+                            <>
+                                <button
+                                    className="btn-secondary"
+                                    onClick={() =>
+                                        navigate(`/events/${event._id}/edit`)
+                                    }
+                                >
+                                    Edit
+                                </button>
 
-                            <button onClick={deleteHandler}>Delete</button>
-                        </div>
-                    )}
-                    {user.email ? (
-                        <>
-                            {!hasAttended && !isOwner && (
-                                <button onClick={attendHandler}>Attend</button>
-                            )}
-                        </>
-                    ) : (
-                        <></>
-                    )}
+                                <button
+                                    className="btn-secondary"
+                                    onClick={deleteHandler}
+                                >
+                                    Delete
+                                </button>
+                            </>
+                        )}
+                        {user.email ? (
+                            <>
+                                {!hasAttended && !isOwner && (
+                                    <button
+                                        className="btn-secondary"
+                                        onClick={attendHandler}
+                                    >
+                                        Attend
+                                    </button>
+                                )}
+                            </>
+                        ) : (
+                            <></>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
