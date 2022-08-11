@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+
 import { AuthContext } from '../../../contexts/authContext';
-
 import { EventContext } from '../../../contexts/eventContext';
-
 import * as eventService from '../../../services/eventService';
+import styles from '../../../App.module.css';
 
 const EventEdit = () => {
     const navigate = useNavigate();
@@ -54,79 +54,75 @@ const EventEdit = () => {
     };
 
     return (
-        <>
+        <div className={styles.container}>
             <form onSubmit={submitHandler}>
-                <h1>Edit an Event</h1>
+                <h1 className={styles.heading}>Edit</h1>
 
-                <div>
+                <div className="form-group">
                     <label htmlFor="event-name">name: </label>
                     <input
+                        className="form-control"
                         type="text"
                         id="event-name"
                         name="name"
                         value={event.name}
                         onChange={changeHandler}
                     ></input>
-                </div>
 
-                <div>
                     <label htmlFor="event-date">date: </label>
                     <input
+                        className="form-control"
                         type="date"
                         id="event-date"
                         name="date"
                         value={event.date}
                         onChange={changeHandler}
                     ></input>
-                </div>
 
-                <div>
                     <label htmlFor="event-time">time: </label>
                     <input
+                        className="form-control"
                         type="time"
                         id="event-time"
                         name="time"
                         value={event.time}
                         onChange={changeHandler}
                     ></input>
-                </div>
 
-                <div>
                     <label htmlFor="event-location">location: </label>
                     <input
+                        className="form-control"
                         type="text"
                         id="event-location"
                         name="location"
                         value={event.location}
                         onChange={changeHandler}
                     ></input>
-                </div>
 
-                <div>
-                    <label htmlFor="event-price">$ </label>
+                    <label htmlFor="event-price">price in euro: </label>
                     <input
+                        className="form-control"
                         type="number"
                         id="event-price"
                         name="price"
                         value={event.price}
                         onChange={changeHandler}
                     ></input>
-                </div>
 
-                <div>
                     <label htmlFor="event-imageUrl">image: </label>
                     <input
+                        className="form-control"
                         type="text"
                         id="event-imageUrl"
                         name="imageUrl"
                         value={event.imageUrl}
                         onChange={changeHandler}
                     ></input>
-                </div>
 
-                <div>
                     <label htmlFor="event-description">description: </label>
                     <textarea
+                        rows={4}
+                        className="form-control"
                         id="event-description"
                         name="description"
                         value={event.description}
@@ -134,10 +130,12 @@ const EventEdit = () => {
                     ></textarea>
                 </div>
                 <div>
-                    <button type="submit">Edit</button>
+                    <button type="submit" className="btn-secondary">
+                        Edit
+                    </button>
                 </div>
             </form>
-        </>
+        </div>
     );
 };
 

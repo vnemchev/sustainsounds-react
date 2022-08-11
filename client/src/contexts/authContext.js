@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createContext } from 'react';
 
-import * as userService from '../services/userService';
-
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {

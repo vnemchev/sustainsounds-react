@@ -1,7 +1,7 @@
 .nav {
+    margin-top: 5px;
     font-family: 'Doctor Glitch', 'Courier New', Courier, monospace;
     text-decoration: none;
-
     display: flex;
     flex-direction: row;
     justify-content: space-around;

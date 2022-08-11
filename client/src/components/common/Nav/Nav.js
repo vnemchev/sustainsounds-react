@@ -24,10 +24,6 @@ const Nav = () => {
                 Artists
             </Link>
 
-            <Link to="/about" className={styles.navlink}>
-                About
-            </Link>
-
             {user.email ? (
                 <>
                     {isArtist && (

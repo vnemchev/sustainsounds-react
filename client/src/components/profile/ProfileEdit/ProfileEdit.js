@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../../contexts/authContext';
 import * as userService from '../../../services/userService';
+import styles from '../../../App.module.css';
 
 const ProfileEdit = () => {
     const navigate = useNavigate();
@@ -55,44 +56,46 @@ const ProfileEdit = () => {
     };
 
     return (
-        <>
+        <div className={styles.container}>
             <form onSubmit={submitHandler}>
-                <h1>Edit Profile</h1>
+                <h1 className={`${styles.heading} ${styles.editHeading}`}>
+                    Edit Profile
+                </h1>
 
-                <div>
+                <div className="form-group">
                     <label htmlFor="alias">alias: </label>
                     <input
+                        className="form-control"
                         type="text"
                         id="alias"
                         name="alias"
                         value={loadedUser.alias}
                         onChange={changeHandler}
                     ></input>
-                </div>
 
-                <div>
                     <label htmlFor="genre">genre: </label>
                     <input
+                        className="form-control"
                         type="text"
                         id="genre"
                         name="genre"
                         value={loadedUser.genre}
                         onChange={changeHandler}
                     ></input>
-                </div>
 
-                <div>
                     <label htmlFor="bio">bio: </label>
                     <textarea
+                        className="form-control"
+                        rows={6}
                         id="bio"
                         name="bio"
                         value={loadedUser.bio}
                         onChange={changeHandler}
                     ></textarea>
-                </div>
-                <div>
+
                     <label htmlFor="imageUrl">image: </label>
                     <input
+                        className="form-control"
                         type="text"
                         id="imageUrl"
                         name="imageUrl"
@@ -102,10 +105,12 @@ const ProfileEdit = () => {
                 </div>
 
                 <div>
-                    <button type="submit">Create</button>
+                    <button type="submit" className="btn-secondary">
+                        Confirm
+                    </button>
                 </div>
             </form>
-        </>
+        </div>
     );
 };
 
