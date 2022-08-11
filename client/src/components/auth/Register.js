@@ -1,8 +1,9 @@
 import { useState, useContext } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { AuthContext } from '../../contexts/authContext';
 
+import { AuthContext } from '../../contexts/authContext';
 import * as authService from '../../services/authService';
+import styles from './AuthForms.module.css';
 
 const Register = () => {
     const navigate = useNavigate();
@@ -56,35 +57,34 @@ const Register = () => {
     };
 
     return (
-        <>
+        <div className={styles.container}>
             <form onSubmit={submitHandler}>
-                <h1>Register</h1>
+                <h1 className={styles.heading}>Sign Up</h1>
 
-                <div>
-                    <label htmlFor="reg-email">email: </label>
+                <div className={`${styles.myFormGroup} form-group`}>
+                    <label htmlFor="reg-email">e-mail: </label>
                     <input
+                        className="form-control"
                         type="email"
                         id="reg-email"
                         name="email"
                         value={registerData.email}
                         onChange={changeHandler}
                     ></input>
-                </div>
 
-                <div>
                     <label htmlFor="reg-password">password: </label>
                     <input
+                        className="form-control"
                         type="password"
                         id="reg-password"
                         name="password"
                         value={registerData.password}
                         onChange={changeHandler}
                     ></input>
-                </div>
 
-                <div>
                     <label htmlFor="repeatPassword">repeat password: </label>
                     <input
+                        className="form-control"
                         type="password"
                         id="repeatPassword"
                         name="repeatPassword"
@@ -93,21 +93,25 @@ const Register = () => {
                     ></input>
                 </div>
 
-                <div>
+                <div className={`${styles.myFormGroup} form-group`}>
                     <input
+                        className="form-check-input"
                         type="checkbox"
                         id="artistReg"
                         name="artistReg"
                         checked={registerData.isArtist}
                         onChange={isArtist}
                     ></input>
-                    <label htmlFor="artistReg">register as artist </label>
+                    <label htmlFor="artistReg" className="form-check-label">
+                        register as artist
+                    </label>
                 </div>
 
                 {registerData.isArtist && (
-                    <div>
+                    <div className={`${styles.myFormGroup} form-group`}>
                         <label htmlFor="alias">alias: </label>
                         <input
+                            className="form-control"
                             type="text"
                             id="alias"
                             name="alias"
@@ -118,12 +122,14 @@ const Register = () => {
                 )}
 
                 <div>
-                    <button type="submit">register</button>
+                    <button type="submit" className="btn-secondary">
+                        Sign Up
+                    </button>
                 </div>
 
                 <Link to={'/login'}>I already have an account!</Link>
             </form>
-        </>
+        </div>
     );
 };
 

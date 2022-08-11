@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react';
-
 import { useNavigate, Link } from 'react-router-dom';
-import { AuthContext } from '../../contexts/authContext';
 
+import { AuthContext } from '../../contexts/authContext';
 import * as authService from '../../services/authService';
+import styles from './AuthForms.module.css';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -35,24 +35,24 @@ const Login = () => {
     };
 
     return (
-        <>
+        <div className={styles.container}>
             <form onSubmit={submitHandler}>
-                <h1>Login</h1>
+                <h1 className={styles.heading}>Log in</h1>
 
-                <div>
-                    <label htmlFor="login-email">email: </label>
+                <div className={`${styles.myFormGroup} form-group`}>
+                    <label htmlFor="login-email">e-mail: </label>
                     <input
+                        className="form-control"
                         type="email"
                         id="login-email"
                         name="email"
                         value={loginData.email}
                         onChange={changeHandler}
                     ></input>
-                </div>
 
-                <div>
                     <label htmlFor="login-password">password: </label>
                     <input
+                        className="form-control"
                         type="password"
                         id="login-password"
                         name="password"
@@ -61,13 +61,15 @@ const Login = () => {
                     ></input>
                 </div>
 
-                <div>
-                    <button type="submit">Login</button>
+                <div className="form-group">
+                    <button type="submit" className="btn-secondary">
+                        Log In
+                    </button>
                 </div>
 
                 <Link to={'/register'}>I don't have an account yet...</Link>
             </form>
-        </>
+        </div>
     );
 };
 

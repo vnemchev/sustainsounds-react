@@ -27,7 +27,7 @@ const Nav = () => {
             <Link to="/about" className={styles.navlink}>
                 About
             </Link>
-            
+
             {user.email ? (
                 <>
                     {isArtist && (
@@ -41,13 +41,13 @@ const Nav = () => {
                     </Link>
 
                     <Link to="/logout" className={styles.navlink}>
-                        Logout
+                        Log out
                     </Link>
                 </>
             ) : (
                 <>
                     <Link to="/login" className={styles.navlink}>
-                        Login
+                        Log in
                     </Link>
 
                     <Link to="/register" className={styles.navlink}>

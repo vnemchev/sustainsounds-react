@@ -1,5 +1,7 @@
 .nav {
     font-family: 'Doctor Glitch', 'Courier New', Courier, monospace;
+    text-decoration: none;
+
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -7,7 +9,6 @@
 }
 
 .hometext {
-    text-decoration: none;
     font-size: large;
     letter-spacing: 4px;
     color: black;
