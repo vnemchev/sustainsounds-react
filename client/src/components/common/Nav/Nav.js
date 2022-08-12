@@ -8,6 +8,7 @@ import styles from './Nav.module.css';
 
 const Nav = () => {
     const { user } = useContext(AuthContext);
+    
     const isArtist = Boolean(user.alias);
 
     return (

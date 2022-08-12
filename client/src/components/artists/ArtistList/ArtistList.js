@@ -6,6 +6,7 @@ import * as userService from '../../../services/userService';
 
 const ArtistList = () => {
     const navigate = useNavigate();
+    
     const [artists, setArtists] = useState([]);
 
     useEffect(() => {

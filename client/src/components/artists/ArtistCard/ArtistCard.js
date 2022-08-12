@@ -14,6 +14,7 @@ const ArtistCard = ({ artist }) => {
                 className={styles.artistPic}
                 alt={artist.alias}
             ></img>
+
             <h2 className={styles.eventName}>{artist.alias}</h2>
         </div>
     );

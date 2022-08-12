@@ -3,10 +3,12 @@ import { useNavigate, Link } from 'react-router-dom';
 
 import { AuthContext } from '../../contexts/authContext';
 import * as authService from '../../services/authService';
+
 import styles from '../../App.module.css';
 
 const Register = () => {
     const navigate = useNavigate();
+
     const { userLogin } = useContext(AuthContext);
 
     const [errors, setErrors] = useState({});

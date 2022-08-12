@@ -3,11 +3,14 @@ import { useNavigate } from 'react-router-dom';
 
 import EventCard from '../../events/EventCard/EventCard';
 import * as userService from '../../../services/userService';
+
 import styles from './Profile.module.css';
 
 const Profile = () => {
     const navigate = useNavigate();
+
     const [loadedUser, setLoadedUser] = useState({});
+    
     const user = JSON.parse(localStorage.getItem('user'));
 
     useEffect(() => {

@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/authContext';
 import { EventContext } from '../../../contexts/eventContext';
 import * as eventService from '../../../services/eventService';
+
 import styles from '../../../App.module.css';
 
 const EventEdit = () => {

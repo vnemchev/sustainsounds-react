@@ -12,6 +12,7 @@ import styles from './EventDetails.module.css';
 const EventDetails = () => {
     const navigate = useNavigate();
     const { eventId } = useParams();
+
     const { eventDelete } = useContext(EventContext);
     const { user, attendEvent } = useContext(AuthContext);
 

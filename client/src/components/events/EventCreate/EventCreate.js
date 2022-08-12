@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { EventContext } from '../../../contexts/eventContext';
 import * as eventService from '../../../services/eventService';
+
 import styles from '../../../App.module.css';
 
 const EventCreate = () => {

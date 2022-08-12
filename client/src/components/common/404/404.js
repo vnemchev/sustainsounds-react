@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+
 import styles from './404.module.css';
 
 const Error404 = () => {
@@ -6,9 +7,9 @@ const Error404 = () => {
 
     return (
         <div className={styles.container}>
-            <div className={styles.a}></div>
+            <div className={styles.space}></div>
             <h1 className={styles.headingText}>Something went wrong!</h1>
-            <div className={styles.a}></div>
+            <div className={styles.space}></div>
 
             <button
                 className="btn-secondary"

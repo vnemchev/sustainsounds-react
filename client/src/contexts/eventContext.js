@@ -7,6 +7,7 @@ export const EventContext = createContext();
 
 export const EventProvider = ({ children }) => {
     const navigate = useNavigate();
+    
     const [events, setEvents] = useState([]);
 
     useEffect(() => {

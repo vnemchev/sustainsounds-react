@@ -8,6 +8,7 @@ import styles from './ArtistDetails.module.css';
 const ArtistDetails = () => {
     const navigate = useNavigate();
     const { artistId } = useParams();
+
     const [artist, setArtists] = useState({});
 
     useEffect(() => {
@@ -21,6 +22,7 @@ const ArtistDetails = () => {
         <div className={styles.wrapper}>
             <div className={styles.artistContainer}>
                 <div className={styles.infoContainer}>
+
                     <img src={artist.imageUrl} alt="profile-pic"></img>
 
                     <h1 className={styles.artisName}>{artist.alias}</h1>
@@ -48,6 +50,7 @@ const ArtistDetails = () => {
                             </Link>
                         ))}
                     </ul>
+                    
                 </div>
             </div>
         </div>

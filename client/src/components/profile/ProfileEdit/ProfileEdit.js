@@ -8,8 +8,10 @@ import styles from '../../../App.module.css';
 
 const ProfileEdit = () => {
     const navigate = useNavigate();
-    const [errors, setErrors] = useState({});
+
     const { user, aliasUpdate } = useContext(AuthContext);
+
+    const [errors, setErrors] = useState({});
     const [loadedUser, setLoadedUser] = useState({
         alias: '',
         genre: '',
