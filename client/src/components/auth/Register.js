@@ -7,8 +7,9 @@ import styles from '../../App.module.css';
 
 const Register = () => {
     const navigate = useNavigate();
-
     const { userLogin } = useContext(AuthContext);
+
+    const [errors, setErrors] = useState({});
     const [registerData, setRegisterData] = useState({
         email: '',
         password: '',
@@ -22,6 +23,11 @@ const Register = () => {
 
         const { email, password, repeatPassword, isArtist, alias } =
             registerData;
+
+        if (password !== repeatPassword) {
+            setErrors(state => ({ ...state, passwords: false }));
+            return;
+        }
 
         let userInfo = {
             email,
@@ -39,7 +45,9 @@ const Register = () => {
                 userLogin(res);
                 navigate('/');
             })
-            .catch(err => console.log(err));
+            .catch(err =>
+                setErrors(state => ({ ...state, registerError: err.message })),
+            );
     };
 
     const changeHandler = e => {
@@ -56,10 +64,21 @@ const Register = () => {
         }));
     };
 
+    const minLength = (e, bound) => {
+        setErrors(state => ({
+            ...state,
+            [e.target.name]: registerData[e.target.name].length < bound,
+        }));
+    };
+
+    const isFormValid = !Object.values(errors).some(x => x);
+
     return (
         <div className={styles.container}>
             <form onSubmit={submitHandler}>
                 <h1 className={styles.heading}>Sign Up</h1>
+
+                {errors.registerError && <p>{errors.registerError}</p>}
 
                 <div className={`${styles.myFormGroup} form-group`}>
                     <label htmlFor="reg-email">e-mail: </label>
@@ -70,7 +89,9 @@ const Register = () => {
                         name="email"
                         value={registerData.email}
                         onChange={changeHandler}
+                        onBlur={e => minLength(e, 9)}
                     ></input>
+                    {errors.email && <p>Email must be at least 9 symbols!</p>}
 
                     <label htmlFor="reg-password">password: </label>
                     <input
@@ -80,7 +101,11 @@ const Register = () => {
                         name="password"
                         value={registerData.password}
                         onChange={changeHandler}
+                        onBlur={e => minLength(e, 4)}
                     ></input>
+                    {errors.password && (
+                        <p>Password must be at least 4 symbols!</p>
+                    )}
 
                     <label htmlFor="repeatPassword">repeat password: </label>
                     <input
@@ -90,8 +115,11 @@ const Register = () => {
                         name="repeatPassword"
                         value={registerData.repeatPassword}
                         onChange={changeHandler}
+                        onBlur={e => minLength(e, 4)}
                     ></input>
                 </div>
+
+                {errors.passwords === false && <p>Passwords must match!</p>}
 
                 <div className={`${styles.myFormGroup} form-group`}>
                     <input
@@ -122,7 +150,11 @@ const Register = () => {
                 )}
 
                 <div>
-                    <button type="submit" className="btn-secondary">
+                    <button
+                        type="submit"
+                        className="btn-secondary"
+                        disabled={!isFormValid}
+                    >
                         Sign Up
                     </button>
                 </div>

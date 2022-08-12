@@ -48,7 +48,7 @@ const Profile = () => {
                     {user.alias && (
                         <button
                             className="btn-secondary"
-                            style={{ 'margin-left': '60px' }}
+                            style={{ marginLeft: '60px' }}
                             onClick={() => navigate('/profile/edit')}
                         >
                             Edit Profile

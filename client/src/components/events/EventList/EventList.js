@@ -8,7 +8,7 @@ const EventList = () => {
 
     const style = {
         display: 'flex',
-        'flex-direction': 'column-reverse',
+        flexDirection: 'column-reverse',
     };
 
     return (

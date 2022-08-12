@@ -36,8 +36,13 @@ form {
 form input {
     width: 350px !important;
 }
+
 form textarea {
     resize: none;
+}
+
+form button {
+    font-size: xx-large;
 }
 
 .heading {

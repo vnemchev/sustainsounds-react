@@ -28,10 +28,10 @@ const request = async (method, endpoint, data) => {
                 return response.json();
             }
         } else {
-            throw new Error();
+            throw new Error(response.message);
         }
     } catch (error) {
-        throw new Error();
+        throw new Error('Something went wrong!');
     }
 };
 

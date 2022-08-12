@@ -8,6 +8,8 @@ import styles from '../../App.module.css';
 const Login = () => {
     const navigate = useNavigate();
     const { userLogin } = useContext(AuthContext);
+
+    const [error, setError] = useState('');
     const [loginData, setLoginData] = useState({
         email: '',
         password: '',
@@ -24,7 +26,9 @@ const Login = () => {
                     navigate('/');
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                setError(err.message);
+            });
     };
 
     const changeHandler = e => {
@@ -38,6 +42,8 @@ const Login = () => {
         <div className={styles.container}>
             <form onSubmit={submitHandler}>
                 <h1 className={styles.heading}>Log in</h1>
+
+                {error.length > 0 && <p>E-mail or password incorrect!</p>}
 
                 <div className={`${styles.myFormGroup} form-group`}>
                     <label htmlFor="login-email">e-mail: </label>
