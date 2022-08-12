@@ -16,11 +16,11 @@ const Logout = () => {
             .then(() => {
                 userLogout();
                 localStorage.clear();
+                navigate('/');
             })
             .catch(err => {
-                console.log(err);
-            })
-            .finally(() => navigate('/'));
+                navigate('/404');
+            });
     });
 
     return null;

@@ -1,11 +1,11 @@
-import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect, useState, useContext } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 
-import { formatDate } from '../../../utils/util';
 import { EventContext } from '../../../contexts/eventContext';
 import { AuthContext } from '../../../contexts/authContext';
 import * as eventService from '../../../services/eventService';
 import * as userService from '../../../services/userService';
+import { formatDate } from '../../../utils/util';
 
 import styles from './EventDetails.module.css';
 
@@ -29,7 +29,7 @@ const EventDetails = () => {
         eventService
             .getOne(eventId)
             .then(res => setEvent(res))
-            .catch(err => console.log(err));
+            .catch(err => navigate('/404'));
     }, []);
 
     const attendHandler = async () => {

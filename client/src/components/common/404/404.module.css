@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.headingText {
+    font-size: 72px;
+    font-family: 'Doctor Glitch', 'Courier New', Courier, monospace;
+    color: #ffda99;
+    letter-spacing: 3px;
+    text-shadow: 3px 4px black;
+}
+
+.a {
+    height: 150px;
+}
+
+button {
+    font-size: 36px;
+}

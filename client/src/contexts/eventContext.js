@@ -13,7 +13,7 @@ export const EventProvider = ({ children }) => {
         eventService
             .getAll()
             .then(res => setEvents(res))
-            .catch(err => alert(err.message));
+            .catch(err => navigate('/404'));
     }, []);
 
     const eventCreate = event => {

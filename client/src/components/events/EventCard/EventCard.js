@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom';
+
 import { formatDate } from '../../../utils/util';
 
-import styles from './EventCard.module.css';
+import styles from '../../Card.module.css';
 
 const EventCard = ({ event }) => {
     const navigate = useNavigate();

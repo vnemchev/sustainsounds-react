@@ -25,7 +25,7 @@ const EventEdit = () => {
         eventService
             .getOne(eventId)
             .then(res => setEvent(res))
-            .catch(err => alert(err.message));
+            .catch(err => navigate('/404'));
     }, [eventId]);
 
     const isOwner = user._id === event._ownerId;
@@ -39,10 +39,9 @@ const EventEdit = () => {
                 .then(res => {
                     setEvent(res);
                     eventEdit(eventId, res);
+                    navigate(`/events/${eventId}`);
                 })
-                .catch(err => console.log(err));
-
-            navigate(`/events/${eventId}`);
+                .catch(err => navigate('/404'));
         }
     };
 

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import EventCard from '../../events/EventCard/EventCard';
@@ -6,21 +6,21 @@ import * as userService from '../../../services/userService';
 import styles from './Profile.module.css';
 
 const Profile = () => {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const [loadedUser, setLoadedUser] = useState({});
     const navigate = useNavigate();
+    const [loadedUser, setLoadedUser] = useState({});
+    const user = JSON.parse(localStorage.getItem('user'));
 
     useEffect(() => {
         if (user.alias) {
             userService
                 .getOneArtistDetailed(user._id)
                 .then(res => setLoadedUser(res))
-                .catch(err => console.log(err));
+                .catch(err => navigate('/404'));
         } else {
             userService
                 .getOneFanDetailed(user._id)
                 .then(res => setLoadedUser(res))
-                .catch(err => console.log(err));
+                .catch(err => navigate('/404'));
         }
     }, []);
 
@@ -70,9 +70,13 @@ const Profile = () => {
                         </div>
                     </>
                 ) : (
-                    <h2 className={styles.bottomHeading}>
-                        No events created yet...
-                    </h2>
+                    <>
+                        {loadedUser.alias && (
+                            <h2 className={styles.bottomHeading}>
+                                No events created yet...
+                            </h2>
+                        )}
+                    </>
                 )}
 
                 {loadedUser?.eventsAttended?.length > 0 ? (

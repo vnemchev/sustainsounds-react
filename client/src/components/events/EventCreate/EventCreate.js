@@ -1,10 +1,12 @@
 import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { EventContext } from '../../../contexts/eventContext';
 import * as eventService from '../../../services/eventService';
 import styles from '../../../App.module.css';
 
 const EventCreate = () => {
+    const navigate = useNavigate();
     const { eventCreate } = useContext(EventContext);
 
     const [event, setEvent] = useState({
@@ -25,7 +27,7 @@ const EventCreate = () => {
             .then(res => {
                 eventCreate(res);
             })
-            .catch(err => console.log(err));
+            .catch(err => navigate('/404'));
     };
 
     const changeHandler = e => {

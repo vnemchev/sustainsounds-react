@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../../contexts/authContext';
 import * as userService from '../../../services/userService';
+
 import styles from '../../../App.module.css';
 
 const ProfileEdit = () => {
@@ -20,9 +21,8 @@ const ProfileEdit = () => {
             .getOneArtist(user._id)
             .then(res => {
                 setLoadedUser(state => ({ ...state, ...res }));
-                console.log(loadedUser);
             })
-            .catch(err => console.log(err));
+            .catch(err => navigate('/404'));
     }, []);
 
     const changeHandler = e => {
