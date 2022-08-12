@@ -32,6 +32,7 @@ const ArtistDetails = () => {
                     <ul className={`${styles.eventsContainer} list-group`}>
                         {artist.eventsCreated?.map(x => (
                             <Link
+                                key={x._id}
                                 className={styles.link}
                                 to={`/events/${x._id}`}
                             >
@@ -40,7 +41,6 @@ const ArtistDetails = () => {
                                         color: 'black',
                                         backgroundColor: '#79A984',
                                     }}
-                                    key={x._id}
                                     className="list-group-item"
                                 >
                                     {x.name}

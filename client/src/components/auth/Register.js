@@ -24,8 +24,15 @@ const Register = () => {
         const { email, password, repeatPassword, isArtist, alias } =
             registerData;
 
+        if (password.length < 4) {
+            setErrors(state => ({
+                ...state,
+                password,
+                repeatPassword,
+            }));
+        }
+
         if (password !== repeatPassword) {
-            setErrors(state => ({ ...state, passwords: false }));
             return;
         }
 
@@ -71,14 +78,14 @@ const Register = () => {
         }));
     };
 
-    const isFormValid = !Object.values(errors).some(x => x);
-
     return (
         <div className={styles.container}>
             <form onSubmit={submitHandler}>
                 <h1 className={styles.heading}>Sign Up</h1>
 
-                {errors.registerError && <p>{errors.registerError}</p>}
+                {errors.registerError && (
+                    <p className={styles.note}>Wrong e-mail or password!</p>
+                )}
 
                 <div className={`${styles.myFormGroup} form-group`}>
                     <label htmlFor="reg-email">e-mail: </label>
@@ -91,7 +98,11 @@ const Register = () => {
                         onChange={changeHandler}
                         onBlur={e => minLength(e, 9)}
                     ></input>
-                    {errors.email && <p>Email must be at least 9 symbols!</p>}
+                    {errors.email && (
+                        <p className={styles.note}>
+                            Email must be at least 9 symbols!
+                        </p>
+                    )}
 
                     <label htmlFor="reg-password">password: </label>
                     <input
@@ -104,7 +115,9 @@ const Register = () => {
                         onBlur={e => minLength(e, 4)}
                     ></input>
                     {errors.password && (
-                        <p>Password must be at least 4 symbols!</p>
+                        <p className={styles.note}>
+                            Password must be at least 4 symbols!
+                        </p>
                     )}
 
                     <label htmlFor="repeatPassword">repeat password: </label>
@@ -115,11 +128,8 @@ const Register = () => {
                         name="repeatPassword"
                         value={registerData.repeatPassword}
                         onChange={changeHandler}
-                        onBlur={e => minLength(e, 4)}
                     ></input>
                 </div>
-
-                {errors.passwords === false && <p>Passwords must match!</p>}
 
                 <div className={`${styles.myFormGroup} form-group`}>
                     <input
@@ -145,16 +155,18 @@ const Register = () => {
                             name="alias"
                             value={registerData.alias}
                             onChange={changeHandler}
+                            onBlur={e => minLength(e, 4)}
                         ></input>
+                        {errors.alias && (
+                            <p className={styles.note}>
+                                Alias must be at least 4 symbols!
+                            </p>
+                        )}
                     </div>
                 )}
 
                 <div>
-                    <button
-                        type="submit"
-                        className="btn-secondary"
-                        disabled={!isFormValid}
-                    >
+                    <button type="submit" className="btn-secondary">
                         Sign Up
                     </button>
                 </div>

@@ -42,11 +42,13 @@ const EventDetails = () => {
 
     const deleteHandler = () => {
         if (isOwner) {
-            eventService.remove(eventId);
+            const confirm = prompt(`To delete, type "${event.name}"`);
 
-            eventDelete(eventId);
+            if (confirm === event.name) {
+                eventService.remove(eventId);
 
-            navigate('/events');
+                eventDelete(eventId);
+            }
         }
     };
 

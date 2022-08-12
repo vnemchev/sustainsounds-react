@@ -2,7 +2,7 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
     min-width: 100%;
     min-height: 100%;
     padding: 5px;
@@ -63,4 +63,11 @@ form button {
     font-family: 'Oxygen', 'Courier New', Courier, monospace;
     font-weight: 600;
     font-size: 18px;
+}
+
+.note {
+    color: red;
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 0px;
 }

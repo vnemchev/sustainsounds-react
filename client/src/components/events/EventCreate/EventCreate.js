@@ -7,8 +7,10 @@ import styles from '../../../App.module.css';
 
 const EventCreate = () => {
     const navigate = useNavigate();
+
     const { eventCreate } = useContext(EventContext);
 
+    const [errors, setErrors] = useState({});
     const [event, setEvent] = useState({
         name: '',
         date: '',
@@ -22,6 +24,10 @@ const EventCreate = () => {
     const submitHandler = e => {
         e.preventDefault();
 
+        if (Object.values(errors).some(x => x)) {
+            return console.log(errors);
+        }
+
         eventService
             .create(event)
             .then(res => {
@@ -34,6 +40,13 @@ const EventCreate = () => {
         setEvent(state => ({
             ...state,
             [e.target.name]: e.target.value,
+        }));
+    };
+
+    const minLength = (e, bound) => {
+        setErrors(state => ({
+            ...state,
+            [e.target.name]: event[e.target.name].length < bound,
         }));
     };
 
@@ -51,7 +64,13 @@ const EventCreate = () => {
                         name="name"
                         value={event.name}
                         onChange={changeHandler}
+                        onBlur={e => minLength(e, 3)}
                     ></input>
+                    {errors.name && (
+                        <p className={styles.note}>
+                            Name must be at least 3 symbols!
+                        </p>
+                    )}
 
                     <label htmlFor="event-date">date: </label>
                     <input
@@ -61,7 +80,13 @@ const EventCreate = () => {
                         name="date"
                         value={event.date}
                         onChange={changeHandler}
+                        onBlur={e => minLength(e, 10)}
                     ></input>
+                    {errors.date && (
+                        <p className={styles.note}>
+                            Date must be at least 11 symbols!
+                        </p>
+                    )}
 
                     <label htmlFor="event-time">time: </label>
                     <input
@@ -71,7 +96,13 @@ const EventCreate = () => {
                         name="time"
                         value={event.time}
                         onChange={changeHandler}
+                        onBlur={e => minLength(e, 5)}
                     ></input>
+                    {errors.time && (
+                        <p className={styles.note}>
+                            Time must be at least 5 symbols!
+                        </p>
+                    )}
 
                     <label htmlFor="event-location">location: </label>
                     <input
@@ -81,7 +112,13 @@ const EventCreate = () => {
                         name="location"
                         value={event.location}
                         onChange={changeHandler}
+                        onBlur={e => minLength(e, 2)}
                     ></input>
+                    {errors.location && (
+                        <p className={styles.note}>
+                            Location must be at least 2 symbols!
+                        </p>
+                    )}
 
                     <label htmlFor="event-price">price in euro: </label>
                     <input
@@ -91,7 +128,13 @@ const EventCreate = () => {
                         name="price"
                         value={event.price}
                         onChange={changeHandler}
+                        onBlur={e => minLength(e, 1)}
                     ></input>
+                    {errors.price && (
+                        <p className={styles.note}>
+                            Price must be at least 1 symbol!
+                        </p>
+                    )}
 
                     <label htmlFor="event-imageUrl">image: </label>
                     <input

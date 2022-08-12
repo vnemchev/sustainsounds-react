@@ -23,10 +23,12 @@ export const EventProvider = ({ children }) => {
 
     const eventEdit = (eventId, event) => {
         setEvents(state => state.map(e => (e._id === eventId ? event : e)));
+        navigate(`/events/${eventId}`);
     };
 
     const eventDelete = eventId => {
         setEvents(state => state.filter(e => e._id !== eventId));
+        navigate('/events');
     };
 
     return (

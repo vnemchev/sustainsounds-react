@@ -8,6 +8,7 @@ import styles from '../../../App.module.css';
 
 const ProfileEdit = () => {
     const navigate = useNavigate();
+    const [errors, setErrors] = useState({});
     const { user, aliasUpdate } = useContext(AuthContext);
     const [loadedUser, setLoadedUser] = useState({
         alias: '',
@@ -35,11 +36,15 @@ const ProfileEdit = () => {
     const submitHandler = e => {
         e.preventDefault();
 
+        if (errors.alias) {
+            return console.log(errors);
+        }
+
         userService
             .editArtist(user._id, loadedUser)
             .then(res => {
                 aliasUpdate(res.alias);
-                console.log(res);
+
                 localStorage.setItem(
                     'user',
                     JSON.stringify({
@@ -52,7 +57,14 @@ const ProfileEdit = () => {
                 );
                 navigate('/profile');
             })
-            .catch(err => console.log(err));
+            .catch(err => navigate('/404'));
+    };
+
+    const minLength = (e, bound) => {
+        setErrors(state => ({
+            ...state,
+            [e.target.name]: loadedUser[e.target.name].length < bound,
+        }));
     };
 
     return (
@@ -71,7 +83,13 @@ const ProfileEdit = () => {
                         name="alias"
                         value={loadedUser.alias}
                         onChange={changeHandler}
+                        onBlur={e => minLength(e, 4)}
                     ></input>
+                    {errors.alias && (
+                        <p className={styles.note}>
+                            Alias must be at least 4 symbols!
+                        </p>
+                    )}
 
                     <label htmlFor="genre">genre: </label>
                     <input
