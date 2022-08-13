@@ -19,7 +19,7 @@ import Profile from './components/profile/Profile/Profile';
 import ProfileEdit from './components/profile/ProfileEdit/ProfileEdit';
 import Error404 from './components/common/404/404';
 
-import styles from './App.module.css';
+import './App.module.css';
 
 const App = () => {
     return (
