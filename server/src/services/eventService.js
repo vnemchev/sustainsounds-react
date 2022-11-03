@@ -51,11 +51,10 @@ exports.edit = async (existing, event) => {
 
 exports.remove = async eventId => {
     const event = await Event.findById(eventId);
-    const ownerId = event._ownerId;
     const artist = await Artist.findById(ownerId);
+    const ownerId = event._ownerId;
 
     const index = artist.eventsCreated.indexOf(event._id);
-
     artist.eventsCreated.splice(index, 1);
 
     await Event.findByIdAndDelete(eventId);
